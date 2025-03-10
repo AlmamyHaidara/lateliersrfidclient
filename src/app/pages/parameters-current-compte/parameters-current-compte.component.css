@@ -1,0 +1,26 @@
+.delete{
+  background-color: #A12E2E;
+  border: none;
+  height:50px;
+  width:20%;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+.deleteva {
+  background-color: #A12E2E;
+  border: none;
+  height: 50px;
+  width: 200px;
+  margin-top: 7px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.changepwd{
+  font-size: 28px;
+  font-weight:bold ;
+}
+body {
+  font-family: 'Poppins';
+}

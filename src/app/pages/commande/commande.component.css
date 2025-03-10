@@ -1,0 +1,99 @@
+.sousc {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+}
+
+body{
+  font-family: 'Poppins';
+
+}
+
+
+.container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header nz-select,
+.header nz-input-group {
+  margin-right: 10px;
+}
+
+.products-container {
+  margin-top: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.product-card {
+  width: 30%;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.product-card h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.green-card {
+  background-color: #dff0d8;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #3c763d;
+  font-weight: bold;
+}
+
+.marge {
+  margin: 20px;
+}
+
+.btn-secondary {
+  margin-right: 10px;
+}

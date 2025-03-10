@@ -1,0 +1,147 @@
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+<body>
+  <nz-layout class="app-layout">
+    <nz-content>
+      <div class="container-fluid mt-3 d-flex flex-wrap">
+        <div class="d-flex principale">
+          <div class="cardP d-flex flex-wrap align-items-center" style="gap: 10px;">
+            <!-- Adresse Section -->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title adresse">Adresse</h5>
+                  <button class="btn btn-outline-secondary but" (click)="showModal()">
+                    <i class="fas fa-plus"></i> Ajouter une Adresse
+                  </button>
+                </div>
+                <div class="firstCombo">
+                  <nz-select [(ngModel)]="selectedAdresseId" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner une adresse" (ngModelChange)="onSelectAdresse($event)">
+                    <nz-option *ngFor="let adresse of adresses"
+                               [nzLabel]="adresse.adr_Adresse + ' - ' + adresse.adr_Ville"
+                               [nzValue]="adresse.adr_Id">
+                    </nz-option>
+                  </nz-select>
+                  <input class="form-control" [(ngModel)]="Dev_Livraisonobservations" type="text" placeholder="Complément d'adresse">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title contact">Contact</h5>
+                  <button class="btn btn-outline-secondary but" (click)="showModalContact()">
+                    <i class="fas fa-plus"></i> Ajouter un contact
+                  </button>
+                </div>
+                <div class="contactCombo">
+                  <nz-select [(ngModel)]="selectedContactId" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner un contact" (ngModelChange)="onSelectContact($event)">
+                    <nz-option *ngFor="let contact of contacts"
+                               [nzLabel]="contact.cot_Nom + ' ' + contact.cot_Prenom + ' - ' + contact.cot_Telephone"
+                               [nzValue]="contact.cot_Id">
+                    </nz-option>
+                  </nz-select>
+                  <input class="form-control" [(ngModel)]="Dev_Contactobservations" type="text" placeholder="Complément contact">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Référence Section -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title reference">Référence</h5>
+                <div class="referenceInput">
+                  <input class="form-control" type="text" placeholder="" [(ngModel)]="Dev_Reference">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Date de Livraison Section -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title Livraison">Date de livraison</h5>
+                <div class="firstfCombo">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <nz-date-picker nzPlaceHolder="Sélectionner une date" [(ngModel)]="datelivraison" nzFormat="dd/MM/yyyy"></nz-date-picker>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-start time1">
+                      <span class="me-2">De</span>
+                      <nz-time-picker nzPlaceHolder="Sélectionner l'heure" [(ngModel)]="heurelivraisondebut" nzFormat="HH:mm" [nzNowText]="' '"></nz-time-picker>
+                      <span class="ms-3 me-2">à</span>
+                      <nz-time-picker nzPlaceHolder="Sélectionner l'heure" [(ngModel)]="heurelivraisonfin" nzFormat="HH:mm" [nzNowText]="' '"></nz-time-picker>
+                    </div>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" >
+                    <label class="form-check-label" for="defaultCheck1">
+                      Livraison impérative
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Date de Reprise Section -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title DateReprise">Date de reprise</h5>
+                <div class="datePicker">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <nz-date-picker nzPlaceHolder="Sélectionner une date" [(ngModel)]="Dev_Dateretour" nzFormat="dd/MM/yyyy"></nz-date-picker>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-start time1">
+                      <span class="me-2">De</span>
+                      <nz-time-picker nzPlaceHolder="Sélectionner l'heure" [(ngModel)]="Dev_Heureretourdebut" nzFormat="HH:mm" [nzNowText]="' '"></nz-time-picker>
+                      <span class="ms-3 me-2">à</span>
+                      <nz-time-picker nzPlaceHolder="Sélectionner l'heure" [(ngModel)]="Dev_Heureretourfin" nzFormat="HH:mm" [nzNowText]="' '"></nz-time-picker>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" >
+                  <label class="form-check-label" for="defaultCheck2">
+                    Reprise au Labo 
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cardPsecond ms-3" style="width: 55%;">
+            <div class="card">
+              <div class="card-body commande">
+                <h5 class="card-title">Mon devis</h5>
+              </div>
+            </div>
+            <div class="card">
+              <app-card-devis [devisArticles]="DevisArticle"></app-card-devis>
+            </div>
+
+            <div class="total mt-3">
+              <span class="d-block text-center">Total: {{ calculateTotal() | currency:'EUR':'symbol':'1.2-2' }}</span>
+            </div>
+            <div class="commander mt-3">
+              <div class="d-flex justify-content-end mt-3">
+                <button type="button" class="btn btn-primary custom-btne-width com" (click)="openApercuModal()">Aperçu</button>
+                <button type="button" class="btn btn-primary custom-btne-width com" (click)="submitDevis()">Créer Devis</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center" style="width: 100%;">
+          <div class="col-md-12 d-flex justify-content-center">
+            <span class="article">
+              <button type="button" class="btn btn-primary custom-btn-width com" (click)="toggleDevis()">
+                Ajouter un article
+              </button>
+            </span>
+          </div>
+          <app-modal-devis *ngIf="showDevis" (addArticle)="addArticleToDevis($event)"></app-modal-devis>
+        </div>
+      </div>
+    </nz-content>
+  </nz-layout>
+</body>

@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
+
+<nz-layout class="app-layout">
+  <nz-content>
+    <div class="inner-content2">
+      <div class="button-retour">
+        <span>ASSOCIATION ARTICLE TAG</span>
+        <div class="etapes mt-5-auto">
+          <span>1/5 <i class="fas fa-step-forward text-warning"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-content3 d-flex flex-column mt-5">
+      <div class="button-container">
+        <button type="button" class="btn btn-primary btn-lg mb-3 button1" routerLink="/listCollection">
+          <img src="assets/ListFamily/img.png" alt="Image 1" class="img-icon"><span>LOCATION</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg mb-3 bouton2 unavailable" (click)="showUnavailableAlert()">
+          <img src="assets/ListFamily/img_1.png" alt="Image 2" class="img-icon"><span>CONDITIONNEMENT</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg bouton unavailable" (click)="showUnavailableAlert()">
+          <img src="assets/ListFamily/img_2.png" alt="Image 3" class="img-icon"> <span>KIT BUFFET</span>
+        </button>
+      </div>
+    </div>
+  </nz-content>
+</nz-layout>

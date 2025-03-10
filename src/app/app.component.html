@@ -1,0 +1,529 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+
+<nz-layout class="app-layout" style="display: flex; flex-direction: column; max-height: 100vh; min-height: 100vh;">
+
+  <section style="display: flex; flex: 1; height: 90%;">
+
+    <div class="spinner-overlay" *ngIf="spinnerService.isSpinnerVisible()">
+      <nz-spin [nzSpinning]="true" [nzSize]="'large'" class="custom-spinner"></nz-spin>
+      <div class="spinner-text">Déconnexion en cours...</div>
+    </div>
+
+
+    <!-- <nz-sider *ngIf="isSidebarVisible()"
+              class="menu-sidebar"
+              nzCollapsible
+              nzWidth="256px"
+              nzBreakpoint="md"
+              [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null"> -->
+    <!-- 
+      <div class="sidebar-logo">
+        <a href="/" target="_blank">
+          <div *ngIf="!isCollapsed">
+            <img src="assets/Login/img.png" alt="logo">
+          </div>
+          <div *ngIf="isCollapsed">
+            <img src="assets/Login/favicon (1).ico" alt="logo" style="max-width: 50px;">
+          </div>
+        </a>
+      </div>
+
+      <div class="custom-menu" >
+
+        <div class="menu1" >
+          
+          <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item *ngIf="emp_Administrateur" routerLink="/dashboard">
+              <span nz-icon><i class="fa-solid fa-house"></i></span>
+              <span>Tableau de bord</span>
+            </li>
+            
+            <li nz-submenu>
+              <span title class="flex items-center">
+                @if(!isCollapsed){
+                  <span nz-icon><img src="assets/new/icons8-commande-en-ligne-100.png" alt="Commandes"  class="icon"
+                    style="transform: translatex(-47px);"></span>
+                  <span style="transform: translatex(-40px);">Commande</span> 
+                }@else{
+                  <span nz-icon><img src="assets/new/icons8-commande-en-ligne-100.png" alt="Commandes"  class="icon"
+                    style="min-width:45px;transform: translatex(-15px); padding: 3px;"></span>
+                }
+              </span>
+              <ul>
+                <li routerLink="/createCommande" nz-menu-item>Créer une commande</li>
+                <li nz-menu-item>Commandes</li>
+              </ul>
+            </li>
+
+           
+            
+            <li nz-menu-item *ngIf="emp_Administrateur == true || emp_Administrateur == false" routerLink="/etatCommande">
+              <span nz-icon><img src="assets/new/icons8-commande-terminée-100.png" alt="Commandes" class="icon"></span>
+              <span>Historiques </span>
+              
+            </li>
+
+            <li nz-submenu>
+              <span title class="flex items-center">
+                @if(!isCollapsed){
+                  <span nz-icon><img src="assets/new/devisimg.png" alt="Commandes"  class="icon"
+                    style="transform: translatex(-96px); padding: 3px;"></span>
+                  <span style="transform: translatex(-86px);">Devis</span> 
+                }@else{
+                  <span nz-icon><img src="assets/new/devisimg.png" alt="Commandes"  class="icon"
+                    style="min-width:45px;transform: translatex(-18px);padding: 6px;"></span>
+                }
+              </span>
+              <ul>
+                <li routerLink="/commandes" nz-menu-item>Devis</li>
+              </ul>
+            </li>
+
+
+
+            <li nz-menu-item *ngIf="emp_Administrateur == true || emp_Administrateur == false " routerLink="/commandes">
+              <span nz-icon><img src="assets/new/icons8-informations-100.png" alt="Commandes" class="icon"></span>
+              <span>Mes informations</span>
+            </li>
+
+
+            <li nz-menu-item *ngIf="emp_Administrateur != true && emp_Administrateur != false " routerLink="/list">
+              <span nz-icon ><i class="fa-solid fa-link"></i></span>
+              <span>Associations</span>
+            </li>
+
+            <li nz-menu-item *ngIf="emp_Administrateur != true && emp_Administrateur != false " routerLink="/supplier">
+              <span nz-icon ><i class="fa-solid fa-truck-field"></i></span>
+              <span>Fournisseurs</span>
+            </li>
+
+
+            <li nz-menu-item  *ngIf=" emp_Administrateur != true && emp_Administrateur != false " routerLink="/userList">
+              <span nz-icon  nzTheme="outline"><i class="fa-solid fa-users"></i></span>
+              <span>Utilisateurs</span>
+            </li>
+
+
+            <li nz-menu-item *ngIf="emp_Administrateur" routerLink="/ListSousCompte">
+              <span nz-icon  nzTheme="outline"><i class="fa-solid fa-users"></i></span>
+              <span>Utilisateurs</span>
+            </li>
+
+            <li nz-submenu>
+              <span title class="flex items-center">
+                @if(!isCollapsed){
+                  <span nz-icon><img src="assets/informations/facture.png" alt="Commandes"  class="icon"
+                    style="transform: translatex(-72px); padding: 3px;"></span>
+                  <span style="transform: translatex(-70px);">Factures</span> 
+                }@else{
+                  <span nz-icon><img src="assets/informations/facture.png" alt="Commandes"  class="icon"
+                    style="min-width:45px;transform: translatex(-18px); padding: 3px;"></span>
+                }
+              </span>
+              <ul>
+                <li nz-menu-item>Factures</li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="menu2">
+
+          <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item routerLink="parameters" >
+              <span nz-icon><i class="fa-solid fa-gears"></i></span>
+              <span>Paramètres</span>
+            </li>
+
+            <li nz-menu-item routerLink="/aides">
+              <span nz-icon nzType="question-circle" ></span>
+              <span>Aide</span>
+            </li>
+            
+
+            <li nz-menu-item (click)="logout()">
+              <span nz-icon ><i class="fa-solid fa-right-from-bracket"></i></span>
+              <span>Se deconnecter</span>
+            </li>
+
+
+
+          
+
+
+
+          </ul>
+
+        </div>
+
+      </div> -->
+
+    <!-- </nz-sider> -->
+
+    <!-- exa decimal : #e6f7ff; -->
+
+    <nz-sider
+      *ngIf="isSidebarVisible()"
+      class="menu-sidebar"
+      nzCollapsible
+      nzWidth="256px"
+      nzBreakpoint="md"
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null">
+    
+      <div class="sidebar-logo">
+        <a href="/dashboard">
+          <div *ngIf="!isCollapsed" class="ml-3">
+            <img src="assets/Login/img.png" alt="logo">
+          </div>
+          <div *ngIf="isCollapsed">
+            <img src="assets/Login/favicon (1).ico" alt="logo" style="width: 50px; height: 50px;">
+          </div>
+        </a>
+      </div>
+
+      <ul nz-menu nzMode="inline" class="menuCont">
+        <table [ngClass]="{ 'tableCollapse': isCollapsed}">
+          <div class="num1">
+            <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur" routerLink="/dashboard"
+                [ngClass]="{'active-custom': isFirstLoad}"
+                >
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-house"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Tableau de bord</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-house"></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+            
+            <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur == true || emp_Administrateur == false" routerLink="/etatCommande" >
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-history"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Historique</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" routerLink="/etatCommande" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-history" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+            <!-- <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur == true || emp_Administrateur == false " routerLink="/commandes">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-user"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Mes informations</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-user" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr> -->
+
+            <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur" routerLink="/ListSousCompte">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-users"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Utilisateurs</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-users" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+            <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur != true && emp_Administrateur != false " routerLink="/list">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon ><i class="fa-solid fa-link"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Associations</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-link" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+            <tr>
+              <li nz-menu-item  *ngIf=" emp_Administrateur != true && emp_Administrateur != false " routerLink="/userList">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-users"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Utilisateurs</span>
+                  </td>
+                </div>
+                
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-users" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+            
+            <tr>
+              <li nz-menu-item  *ngIf="emp_Administrateur != true && emp_Administrateur != false " routerLink="/supplier">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon ><i class="fa-solid fa-truck-field"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Fournisseurs</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-truck-field" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+            
+            <tr>
+              <li nz-submenu  [nzOpen]="openSubmenus['menu1']" (click)="toggleSubmenu('menu1')">
+                <div title class="submenu-title" *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-shopping-cart"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Commande</span>
+                  </td>
+                </div>
+  
+                <div title *ngIf="isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-shopping-cart"></i></span>
+                  </td>
+                </div>
+  
+                <ul>
+                  <li nz-menu-item routerLink="/createCommande">Créer une commande</li>
+                  <li nz-menu-item routerLink="/listCommande">Liste des commandes</li>
+                </ul>
+              </li>
+            </tr>
+
+          <!--   <tr>
+              <li nz-submenu  [nzOpen]="openSubmenus['menu2']" (click)="toggleSubmenu('menu2')">
+                <div title class="submenu-title" *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-file-invoice"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Devis</span>
+                  </td>
+                </div>
+  
+                <div title *ngIf="isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-file-invoice"></i></span>
+                  </td>
+                </div>
+                
+                <ul>
+                  <li nz-menu-item routerLink="/commandes">Devis</li>
+                </ul>
+              </li>
+            </tr>
+ -->
+           <!--  <tr>
+              <li nz-submenu  [nzOpen]="openSubmenus['menu3']" (click)="toggleSubmenu('menu3')">
+                <div title class="submenu-title" *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Factures</span>
+                  </td>
+                </div>
+                
+                <div title *ngIf="isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  </td>
+                </div>
+  
+                <ul>
+                  <li nz-menu-item>Factures</li>
+                </ul>
+              </li>
+            </tr> -->
+            
+            
+          </div>
+          <div class="pt-40">
+
+            <!-- <tr>
+              <li nz-submenu  [nzOpen]="openSubmenus['menu4']" (click)="toggleSubmenu('menu4')">
+                <div title class="submenu-title" *ngIf="!isCollapsed">
+                  <td>
+                    <span><i class="fa-solid fa-user-tie"></i></span>
+                  </td>
+                  <td class="tdText">
+                    <span>Administration</span>
+                  </td>
+                </div>
+  
+                <div title *ngIf="isCollapsed">
+                  <td>
+                    <span><i class="fa-solid fa-user-tie"></i></span>
+                  </td>
+                </div>
+  
+                <ul>
+                  <li nz-menu-item>Mes infos</li>
+                  <li nz-menu-item>Utilisateurs</li>
+                </ul>
+              </li>
+            </tr> -->
+
+            <tr>
+              <li nz-menu-item  routerLink="parameters">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-gears"></i></span>
+                  </td>
+                  <td>
+                    <span>Paramètres</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-gears" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+            <tr>
+              <li nz-menu-item  routerLink="/aides">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-question-circle"></i></span>
+                  </td>
+                  <td>
+                    <span>Aide</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-question-circle" ></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+            <tr>
+              <li nz-menu-item  (click)="logout()">
+                <div  *ngIf="!isCollapsed">
+                  <td>
+                    <span nz-icon><i class="fa-solid fa-right-from-bracket"></i></span>
+                  </td>
+                  <td>
+                    <span>Se deconnecter</span>
+                  </td>
+                </div>
+  
+                <div *ngIf="isCollapsed" class="flex justify-center align-items-center ">
+                  <td class="ico">
+                    <span nz-icon><i class="fa-solid fa-right-from-bracket"></i></span>
+                  </td>
+                </div>
+              </li>
+            </tr>
+
+          </div>
+        </table>
+      </ul>
+    </nz-sider>
+
+    <nz-layout>
+      <nz-header *ngIf="isHeaderVisible()">
+        <div class="app-header d-flex justify-content-between">
+
+          <div class="barre">
+            <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+            </span>
+          </div>
+
+          <div class="profil d-flex align-items-center">
+            <div class="avatar" *ngIf="userData">
+              <span><strong>{{userData.usr_Nom}}</strong>
+                <span class="badge bg-primary">{{userData.usr_Prenom}}</span>
+              </span>
+              <img src="assets/informations/user.png" class="mb-0 rounded-circle" alt="Avatar" />
+            </div>
+          </div>
+          
+        </div>
+      </nz-header>
+      <div [ngClass]="{
+        'inner-content': isSidebarVisible() && isHeaderVisible(),
+        'inner-content2': !(isSidebarVisible() && isHeaderVisible())
+      }">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-layout>
+  </section>
+
+  <section>
+    <div style="width: 100%;">
+      <app-footer></app-footer>
+    </div>
+  </section>
+
+</nz-layout>
+
+

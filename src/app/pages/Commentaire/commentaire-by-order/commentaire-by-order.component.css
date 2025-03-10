@@ -1,0 +1,9 @@
+.a{
+    transition: 0.1s;
+}
+
+.style{
+    border: none;
+    transition: 0.3s;
+    border: solid 2px transparent;
+}

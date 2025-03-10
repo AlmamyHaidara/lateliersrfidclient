@@ -1,0 +1,24 @@
+.custom-btn-width {
+  width: 320px;
+  background-color:#A12E2E;
+  border: none;
+  margin-left:-360px;
+  padding: 17px;
+  font-size: 20px;
+  font-family: Roboto;
+}
+ .custom-modal-dialog {
+   max-width: 450px;
+ }
+.custom-btne-width {
+  width: 400px;
+  background-color:#3D5A80;
+  border: none;
+  margin-left:-360px;
+  padding: 17px;
+  font-size: 20px;
+  font-family: Roboto;
+}
+.custom-modal-dialog {
+  height: 100px;
+}

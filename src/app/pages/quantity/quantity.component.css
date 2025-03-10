@@ -1,0 +1,13 @@
+.btn {
+  width: 30px; /* Réduire la largeur */
+  height: 30px; /* Réduire la hauteur */
+  font-size: 14px; /* Réduire la taille de la police */
+  padding: 0; /* Enlever tout padding */
+  line-height: 30px; /* Centrer le texte verticalement */
+}
+
+.custom-input-width {
+  width: 60px; /* Ajuster la largeur de l'input pour correspondre à la nouvelle taille des boutons */
+  height: 30px; /* Réduire la hauteur de l'input pour correspondre */
+  font-size: 14px; /* Ajuster la taille de la police pour s'adapter */
+}

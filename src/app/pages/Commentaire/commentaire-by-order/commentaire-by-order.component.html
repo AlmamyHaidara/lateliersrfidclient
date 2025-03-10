@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Feedback Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen p-6 from-blue-50 to-blue-200">
+    <form (ngSubmit)="valider()">   
+
+        <div class="w-full max-w-4xl p-8 transition duration-300 transform bg-white shadow-2xl rounded-3xl hover:scale-105">
+            
+            <!-- Card Header -->
+            <div class="p-4 mb-8 text-center text-white shadow-lg bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl">
+                <h2 class="text-3xl font-bold">Laissez votre avis</h2>
+                <p class="mt-1 text-sm font-medium">Partagez votre expérience avec nous</p>
+            </div>
+            
+            <!-- Feedback Options -->
+        <!-- Feedback Options -->
+            <div class="grid grid-cols-2 gap-6 mb-10 sm:grid-cols-3">
+
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_livraison_avec_soin" name="livraisonAvecSoin">
+                    <div class="p-4 transition duration-300 transform bg-yellow-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://img.icons8.com/color/48/000000/delivery.png" alt="Delivery" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Livré avec soin</span>
+                </label>
+
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_au_dela_attentes" name="auDelaAttentes">
+                    <div class="p-4 transition duration-300 transform bg-yellow-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://img.icons8.com/color/48/000000/medal.png" alt="Expectation" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Au-delà de mes attentes</span>
+                </label>
+
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_articles_conformes" name="articlesConformes">
+                    <div class="p-4 transition duration-300 transform bg-blue-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://img.icons8.com/color/48/000000/checkmark.png" alt="Conformity" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Articles conformes</span>
+                </label>
+
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_respect_instructions" name="respectInstructions">
+                    <div class="p-4 transition duration-300 transform bg-pink-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://img.icons8.com/color/48/000000/checklist.png" alt="Instructions" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Respect des instructions</span>
+                </label>
+
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_dans_delais" name="dansDelais">
+                    <div class="p-4 transition duration-300 transform bg-blue-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://img.icons8.com/color/48/000000/stopwatch.png" alt="Timeliness" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Dans les délais</span>
+                </label>
+                
+                <label class="flex flex-col items-center space-y-2 cursor-pointer group">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="commentaire.com_articles_qualite" name="articlesQualite">
+                    <div class="p-4 transition duration-300 transform bg-yellow-100 rounded-full shadow-md group-hover:scale-110 peer-checked:ring-4 peer-checked:ring-blue-400">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1892/1892655.png" alt="Quality" class="w-12 h-12"/>
+                    </div>
+                    <span class="font-semibold text-center text-gray-700">Articles de qualité</span>
+                </label>
+            </div>
+
+            <!-- Comment Section -->
+            <div class="mb-10">
+                <label for="comment" class="block mb-2 font-semibold text-gray-800">Écrivez un commentaire</label>
+                <textarea id="comment" placeholder="Votre commentaire" [(ngModel)]="commentaire.com_message" name="commentaireMessage"
+                class="w-full p-4 transition duration-300 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" rows="4"></textarea>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="mb-10">
+                <label class="block mb-2 font-semibold text-gray-800">Ajouter une photo</label>
+                <div class="flex space-x-4 items-center">
+                    <img src="https://placehold.co/60" alt="Uploaded Image" class="w-16 h-16 border border-gray-300 shadow-sm rounded-xl"/>
+                    <div class="flex items-center justify-center w-16 h-16 transition duration-300 bg-gray-200 border border-gray-300 shadow-sm cursor-pointer rounded-xl hover:bg-gray-300">
+                        <svg class="w-8 h-8 text-gray-500" (click)="fileInput.click()" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <p *ngIf="selectedFileName" class="text-gray-700">
+                        Fichier sélectionné : <strong>{{ selectedFileName }}</strong>
+                    </p>
+                    <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" class="hidden">
+                </div>
+            </div>
+
+            <div class="flex gap-4 ">
+                <button 
+                    [routerLink]="['/etatCommande']" 
+                    [disabled]="envoie"
+                    style="width: 50%;"
+                    class="btn-cancel px-4 py-2 border border-gray-400 text-gray-600 bg-gray-200 rounded hover:bg-gray-300 hover:border-gray-500 hover:text-gray-800 transition duration-300">
+                    Annuler
+                </button>
+
+                <button class="py-3 font-bold text-white transition duration-300 shadow-lg bg-gradient-to-r from-red-500 to-red-600 rounded-xl hover:from-red-600 hover:to-red-700" 
+                type="submit" [disabled]="envoie" style="width: 50%;">
+                    @if(!envoie){
+                        <span>Valider</span>
+                    }@else{
+                        <span class="spinner-border"></span>
+                    }
+                </button>
+                
+            </div>
+        </div>
+    </form>
+</body>
+</html>

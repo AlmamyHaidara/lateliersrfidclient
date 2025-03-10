@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/17b81b88-74d7-4ca5-a7cf-3abfcb996bc4/resourceGroups/rg-latel-dev/providers/Microsoft.Web/sites/rfid-front",
+    "appService.deploySubpath": ".",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}

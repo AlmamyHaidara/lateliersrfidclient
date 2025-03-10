@@ -1,0 +1,72 @@
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+<body>
+    
+  <nz-layout class="app-layout">
+    <div class="page__content shadow p-1 position-relative">
+      <div class="text-center mt-3">
+        <h1 class="sousc">Mes Contacts</h1>
+      </div>
+    </div>
+
+    <div class="container-xl">
+      <div class="table-wrapper" style="overflow-y: auto; height: 600px;">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <!-- Search Input -->
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input nz-input placeholder="Rechercher..." [(ngModel)]="searchValue" (ngModelChange)="onSearch()" />
+                <ng-template #suffixIconSearch>
+                  <i nz-icon nzType="search"></i>
+                </ng-template>
+              </nz-input-group>
+            </div>
+
+            <div class="col-sm-4 text-right">
+              <!-- Add Contact Button -->
+              <button nz-button nzType="default" class="blue-button" routerLink="/addContact">
+                <i nz-icon nzType="plus"></i> Ajouter un contact
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <nz-table #basicTable [nzData]="filteredContacts" [nzFrontPagination]="false">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Mobile</th>
+              <th>Adresse Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of basicTable.data">
+              <td>{{ contact.cot_Nom }}</td>
+              <td>{{ contact.cot_Prenom }}</td>
+              <td>{{ contact.cot_Telephone }}</td>
+              <td>{{ contact.cot_Email }}</td>
+              <td>
+                <div class="button-container">
+
+                    <button nz-button  class="blue-button" [routerLink]="['/editContact', contact.cot_Id]">
+                      <i nz-icon nzType="edit"></i>modifier
+                    </button>
+                    <button nz-button class="red-button" (click)="supprimerContact(contact.cot_Id)">
+                      <i nz-icon nzType="delete"></i>supprimer
+                    </button>
+
+                </div>    
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+
+        <!-- Pagination -->
+        <nz-pagination [nzPageSize]="5" [nzTotal]="filteredContacts.length" [(nzPageIndex)]="pageIndex"></nz-pagination>
+      </div>
+    </div>
+  </nz-layout>
+</body>

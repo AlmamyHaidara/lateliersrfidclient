@@ -1,0 +1,94 @@
+
+<nz-card class="shadow" [nzBordered]="false">
+  <form (submit)="addAdresse()">
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Nomsociete'" nzRequired>Société</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="adr_Nomsociete" name="adr_Nomsociete" #adr_Nomsociete [(ngModel)]="newAdresse.adr_Nomsociete" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Adresse'" nzRequired>Adresse</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="adr_Adresse" name="adr_Adresse" [(ngModel)]="newAdresse.adr_Adresse" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Codepostal'" nzRequired>Code postal</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="adr_Codepostal" name="adr_Codepostal" [(ngModel)]="newAdresse.adr_Codepostal" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Ville'" nzRequired>Ville</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="adr_Ville" name="adr_Ville" [(ngModel)]="newAdresse.adr_Ville" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Telephone'" nzRequired>Téléphone</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="tel" id="adr_Telephone" name="adr_Telephone" [(ngModel)]="newAdresse.adr_Telephone" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Fax'" >Fax</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="tel" id="adr_Fax" name="adr_Fax"  [(ngModel)]="newAdresse.Adr_Fax">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'adr_Email'" nzRequired>Email</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="email" id="adr_Email" name="adr_Email" [(ngModel)]="newAdresse.adr_Email" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'Adr_Observations'" nzRequired>Observations</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="Adr_Observations" name="Adr_Observations" [(ngModel)]="newAdresse.Adr_Observations" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="text-center">
+      
+      <button nz-button nzType="primary" type="button" nzDanger (click)="fermer()" [disabled]="spinner">Annuler</button>
+      <button nz-button nzType="default"  type="submit" [disabled]="spinner">
+        @if(!spinner){
+          <span>Ajouter</span>
+        }@else{
+          <span class="spinner-border" style="width: 15px; height: 15px;"></span>
+        }
+      </button>
+
+      
+
+
+    </div>
+  </form>
+</nz-card>

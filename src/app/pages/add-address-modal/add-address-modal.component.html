@@ -1,0 +1,5 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Ajouter une Adresse" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+  <div *nzModalContent>
+    <app-add-adress-form (closeModal)="handleModalClose()"></app-add-adress-form>
+  </div>
+</nz-modal>

@@ -1,0 +1,240 @@
+<nz-layout class="app-layout px-4 pb-10 pt-4">
+  <div class="p-4 shadow-sm page__content position-relative">
+    <div class="mt-3 text-center">
+      <h1 nz-typography class="text-lg font-semibold">Ajouter un Sous Compte</h1>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="mt-5 row justify-content-center">
+      <div class="col-lg-6 col-md-12">
+        <nz-card nzBordered [nzBorderless]="false" [nzHoverable]="true" class="shadow-sm"       
+        >
+          <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+            <div class="mb-4 text-center">
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="12">
+                  <button
+                  type="button"
+                  class="flex items-center px-4 py-2 text-blue-600 transition duration-200 ease-in-out rounded hover:text-blue-800 hover:bg-gray-100"
+                  [routerLink]="['/ListSousCompte']"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="w-5 h-5 mr-2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Retour
+                </button>
+                
+                </div>
+              </div>
+            </div>
+
+
+            <div nz-row [nzGutter]="16">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label [nzRequired]="true" class="text-start">Nom</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="emp_nom"
+                      type="text"
+                      placeholder="Nom"
+                      name="emp_nom"
+                      [(ngModel)]="employe.Emp_Nom"
+                      required
+                      minlength="2"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label [nzRequired]="true" class="text-start">Prénom</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="emp_prenom"
+                      type="text"
+                      placeholder="Prénom"
+                      name="emp_prenom"
+                      [(ngModel)]="employe.Emp_Prenom"
+                      required
+                      minlength="2"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+
+
+            <div nz-row [nzGutter]="16" class="mb-2">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label [nzRequired]="true" class="text-start">Adresse Email</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="Emp_AdresseMail"
+                      type="email"
+                      placeholder="Adresse Email"
+                      name="Emp_AdresseEmail"
+                      [(ngModel)]="employe.Emp_AdresseMail"
+                      required
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label [nzRequired]="true" class="text-start">Numéro de Téléphone</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="emp_numerotelephone"
+                      type="tel"
+                      placeholder="Numéro de Téléphone"
+                      name="emp_numerotelephone"
+                      [(ngModel)]="employe.Emp_NumeroTelephone"
+                      required
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <!-- Poste -->
+            <nz-form-item class="flex flex-column">
+              <nz-form-label [nzRequired]="true" class="text-start">Poste</nz-form-label>
+              <nz-form-control>
+                <nz-select
+                  id="emp_poste"
+                  [(ngModel)]="employe.Emp_Pst_Id"
+                  name="emp_poste"
+                  nzPlaceHolder="Choisissez votre poste"
+                >
+                  <nz-option
+                    *ngFor="let poste of postes"
+                    [nzValue]="poste.pst_Id"
+                    [nzLabel]="poste.pst_Designation"
+                  ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+
+            <!-- Mot de passe et confirmation -->
+            <div nz-row [nzGutter]="16" class="mt-10">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column ">
+                  <nz-form-label [nzRequired]="true" class="text-start">Mot de passe</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="emp_motdepasse"
+                      type="password"
+                      placeholder="Mot de passe"
+                      name="emp_motdepasse"
+                      [(ngModel)]="employe.Emp_MotDePasse"
+                      required
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column ">
+                  <nz-form-label [nzRequired]="true" class="text-start">Confirmer le mot de passe</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      #inputRef
+                      nz-input
+                      id="passwordconf"
+                      type="password"
+                      placeholder="Confirmer le mot de passe"
+                      name="passwordconf"
+                      [(ngModel)]="passwordConf"
+                      required
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <!-- Photo de profil -->
+            <nz-form-item class="flex flex-column">
+              <nz-form-label class="text-start">Photo de profil</nz-form-label>
+              <nz-form-control>
+                <!-- <input
+                  nz-input
+                  type="file"
+                  id="emp_logo_url"
+                  name="emp_logo_url"
+                  accept="image/*"
+                  [(ngModel)]="employe.Emp_LogoUrl"
+                /> -->
+                <div class="flex items-center file" style="gap: 13px;">
+                  <p *ngIf="!selectedFileName" style="transform: translateY(10px);" (click)="fileInput.click()">
+                    Selectionnez un fichier
+                  </p>
+                  <p *ngIf="selectedFileName" class="text-gray-700" style="transform: translateY(10px);">
+                    Fichier sélectionné : <strong>{{ selectedFileName }}</strong>
+                  </p>
+                  <input id="emp_logo_url"  name="emp_logo_url" type="file"
+                  #fileInput (change)="onFileChange($event)" accept="image/*" [(ngModel)]="employe.Emp_LogoUrl" class="hidden">
+
+                  <div class="flex items-center justify-center w-10 h-10 transition duration-300 bg-gray-200 border border-gray-300 shadow-sm cursor-pointer rounded-xl hover:bg-gray-300">
+                    <svg class="w-6 h-6 text-gray-500" (click)="fileInput.click()" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+
+            <!-- Boutons -->
+            <div class="pt-4 text-center">
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                class="mr-2"
+                type="submit"
+                [disabled]="spinner"
+                style="width: 100%; max-width: 100px;"
+              >
+                @if(!spinner){
+                  <span>Ajouter</span>
+                }@else{
+                  <span class="spinner-border"></span>
+                }
+                
+              </button>
+              <button
+                nz-button
+                nzType="default"
+                nzSize="large"
+                class="text-danger"
+                [routerLink]="['/ListSousCompte']"
+                [disabled]="spinner"
+              >
+                Annuler
+              </button>
+            </div>
+          </form>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+</nz-layout>

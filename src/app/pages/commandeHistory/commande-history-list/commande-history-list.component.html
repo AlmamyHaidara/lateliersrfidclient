@@ -1,0 +1,59 @@
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+<body>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body d-flex justify-content-center">
+
+            <div class="icon-container d-flex flex-wrap ">
+
+              <div class="w-100 d-flex justify-content-start">
+                  <div [ngClass]="{ 'ma-classe': clique1 , 'c2': !clique1}" class="d-flex  align-items-center" style="position: relative;">
+                    <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique1">
+                    <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/camion.png" iconText="Livré avec soin" (click)="cliquer1('Livré avec soin')"></app-icon>
+                  </div>
+                  <div [ngClass]="{ 'ma-classe': clique2 , 'c2': !clique2}" class="d-flex  align-items-center" style="position: relative;">
+                    <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique2">
+                    <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/Attente.png" iconText="Au delà de mes attentes" (click)="cliquer2('Au delà de mes attentes')"></app-icon>
+                  </div>
+                  <div [ngClass]="{ 'ma-classe': clique3, 'c2': !clique3}" class="d-flex  align-items-center" style="position: relative;">
+                    <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique3">
+                    <app-icon class="mb-3" iconSrc="/assets/commandes/verifier.png" iconText="Articles conformes" (click)="cliquer3('Articles conformes')"></app-icon>
+                  </div>
+              </div>
+
+              <div class="w-100 d-flex justify-content-start">
+                <div [ngClass]="{ 'ma-classe': clique4 , 'c2': !clique4}" class="d-flex  align-items-center" style="position: relative;">
+                  <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique4">
+                  <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/completed-task.png" iconText="Respect des instructions" (click)="cliquer4('Respect des instructions')"></app-icon>
+                </div>
+                <div [ngClass]="{ 'ma-classe': clique5, 'c2': !clique5 }" class="d-flex  align-items-center" style="position: relative;">
+                  <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique5">
+                  <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/chronometres.png" iconText="Dans les délais" (click)="cliquer5('Dans les délais')"></app-icon>
+                </div>
+                <div [ngClass]="{ 'ma-classe': clique6, 'c2': !clique6 }" class="d-flex  align-items-center" style="position: relative;">
+                  <img src="assets/autre_imgs/verifier.png" alt="Checked" style=" width:15%; position: absolute; top: 10px; left: 20px;" *ngIf="clique6">
+                  <app-icon class="mb-3" iconSrc="/assets/commandes/qualite.png" iconText="Articles de qualité" (click)="cliquer6('Articles de qualité')"></app-icon>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-4 d-flex flex-column align-items-end">
+        <app-comment-section></app-comment-section>
+        <app-upload-section class="mt-3"></app-upload-section>
+        <app-submit-button></app-submit-button>
+        
+      </div>
+    </div>
+  </div>
+</body>
+
+      <!-- <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/camion.png" iconText="Livré avec soin"></app-icon>
+      <app-icon class="mb-3 me-3" iconSrc="/assets/commandes/Attente.png" iconText="Au delà de mes attentes"></app-icon>
+      <app-icon class="mb-3" iconSrc="/assets/commandes/verifier.png" iconText="Articles conformes"></app-icon> -->

@@ -1,0 +1,309 @@
+
+<div class="p-1 shadow page__content position-relative">
+  <div class="relative p-6 mb-6 text-center text-gray-800 rounded-lg shadow-lg bg-gradient-to-r from-white via-gray-50 to-gray-100">
+    <div class="absolute top-0 right-0 w-2 h-full rounded-r-lg bg-gradient-to-b from-purple-500 to-purple-600"></div>
+    <h1 class="text-3xl font-extrabold text-gray-800">HISTORIQUES DES COMMANDES</h1>
+  </div>
+  <div class="flex items-center justify-start mt-5 mb-5">
+    <div class="space-x-3">
+      <button
+        class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        [class.bg-blue-500]="showValidated === null"
+        [class.text-white]="showValidated === null"
+        [class.text-gray-700]="showValidated !== null"
+        (click)="showValidated = null; filterCommandes();"
+      >
+        Toutes
+      </button>
+      <button
+        class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        [class.bg-blue-500]="showValidated === true"
+        [class.text-white]="showValidated === true"
+        [class.text-gray-700]="showValidated !== true"
+        (click)="showValidated = true; filterCommandes();"
+      >
+        Validées
+      </button>
+      <button
+        class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        [class.bg-blue-500]="showValidated === false"
+        [class.text-white]="showValidated === false"
+        [class.text-gray-700]="showValidated !== false"
+        (click)="showValidated = false; filterCommandes();"
+      >
+        Non Validées
+      </button>
+    </div>
+  </div>
+  <div class="p-4 bg-white border-l-4 border-r-4 border-green-800 rounded-lg shadow-xl">
+    <div class="flex items-center justify-between cursor-pointer" (click)="isFormVisible = !isFormVisible">
+      <h2 class="text-lg font-medium text-gray-700">Recherche de commandes</h2>
+      <button class="text-blue-500 hover:underline">
+        {{ isFormVisible ? 'Masquer' : 'Afficher' }} le formulaire
+      </button>
+    </div>
+  
+    <form *ngIf="isFormVisible" class="mt-4 space-y-4" (ngSubmit)="onSubmitSearch()">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="numCommande" class="block text-sm font-medium text-gray-700">Numéro de commande</label>
+          <input
+            type="text"
+            id="numCommande"
+            [(ngModel)]="searchCriteria.numCommande"
+            name="numCommande"
+            class="block w-full mt-1 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-600 focus:border-green-600"
+            placeholder="Ex: 12345"
+            style="padding: 8px; text-indent: 10px;"
+          />
+        </div>
+  
+        <div>
+          <label for="reference" class="block text-sm font-medium text-gray-700">Référence</label>
+          <input
+            type="text"
+            id="reference"
+            [(ngModel)]="searchCriteria.reference"
+            name="reference"
+            class="block w-full mt-1 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            placeholder="Ex: REF-001"
+            style="padding: 8px; text-indent: 10px;"
+          />
+        </div>
+      </div>
+  
+  
+  
+      <div class="flex justify-end mt-4 space-x-4">
+        <button
+          type="reset"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Réinitialiser
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Rechercher
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  
+  
+  
+  
+
+  <div *ngIf="loading" class="flex items-center justify-center mt-10">
+    <div class="w-12 h-12 border-t-4 border-blue-500 rounded-full animate-spin"></div>
+  </div>
+
+  <div *ngIf="!loading">
+    
+    <div class="select-group">
+      <!-- Sélecteur du mois -->
+      <div class="select-container">
+        <label for="monthSelect" class="select-label">Mois</label>
+        <nz-select
+          id="monthSelect"
+          class="custom-select"
+          [(ngModel)]="selectedMonth"
+          (ngModelChange)="onDateChange('month')"
+          nzPlaceHolder="Choisir un mois"
+        >
+          <nz-option *ngFor="let month of months" [nzValue]="month.value" [nzLabel]="month.label"></nz-option>
+        </nz-select>
+      </div>
+    
+      <!-- Sélecteur de l'année -->
+      <div class="select-container">
+        <label for="yearSelect" class="select-label">Année</label>
+        <nz-select
+          id="yearSelect"
+          class="custom-select"
+          [(ngModel)]="selectedYear"
+          (ngModelChange)="onDateChange('year')"
+          nzPlaceHolder="Choisir une année"
+        >
+          <nz-option *ngFor="let year of years" [nzValue]="year.value" [nzLabel]="year.label"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    
+    
+
+    <nz-layout class="mt-4 scrollable-card">
+      <div class="grid grid-cols-2 gap-6" >
+        <div *ngFor="let commande of commandes; let i = index">
+          <nz-card class="transition-transform duration-300 transform shadow-md cd custom-card hover:scale-105">
+            <nz-card-tab>
+              <nz-tabset nzSize="small">
+                <nz-tab nzTitle="La commande">
+                  <div style="max-width: 90%; margin: 0 auto;">
+                    <div class="mb-2 row">
+                      <div class="col-md-6">
+                        <strong>N° Commande:</strong> {{ commande.cde_Numcommande }}
+                      </div>
+                      <div class="col-md-6 text-end">
+                        <strong>Référence:</strong> {{ commande.cde_Reference }}
+                      </div>
+                    </div>
+      
+                    <div *ngIf="commande.cde_Valide || commande.cde_Numcommande != 888888" class="mb-4">
+                      <nz-badge [nzStatus]="'success'" [nzText]="''">
+                        <span class="bold-text">Validée</span>
+                      </nz-badge>
+                    </div>
+  
+  
+                    <div *ngIf="!commande.cde_Valide && commande.cde_Numcommande == 888888 " class="mb-4">
+                      <nz-badge [nzStatus]="'warning'" [nzText]="''">
+                        <span class="nonsuccess">Non validée</span>
+                      </nz-badge>
+                    </div>
+      
+                    <div class="mb-2 row">
+                      <div class="col-md-6">
+                        <strong>Date de création:</strong> {{ commande.cde_Datecreation | date: 'dd/MM/yyyy' }}
+                      </div>
+                      <div class="col-md-6 text-end">
+                        <strong>Total HT:</strong> <span class="text-danger"> {{ commande.cde_Totalht | customNumber }} euros</span>
+                      </div>
+                    </div>
+      
+                    <div class="mb-2 row">
+                      <div class="col-md-6">
+                        <strong>Date de livraison:</strong> {{ commande.cde_Datelivraison | date: 'dd/MM/yyyy' }} 
+                      </div>
+                      <div class="col-md-6 text-end">
+                        <strong>Total TVA:</strong> <span class="text-ordinaire"> {{ commande.cde_Totaltva | customNumber  }} euros</span>
+                      </div>
+                    </div>
+      
+                    <div class="mb-2 mb-4 row">
+                      <div class="col-md-6">
+                        <strong>Date de reprise:</strong> {{ commande.cde_Dateretour | date: 'dd/MM/yyyy' }}
+                      </div>
+                      <div class="col-md-6 text-end">
+                        <strong>Total TTC:</strong> <span class="text-ordinaire"> {{ commande.cde_Totalttc | customNumber }} euros</span>
+                      </div>
+                    </div>
+                  </div>
+                </nz-tab>
+
+                <nz-tab nzTitle="Suivi de la commande">
+                  <app-order-tracking [commande]="commande"></app-order-tracking>
+                </nz-tab>
+              </nz-tabset>
+            </nz-card-tab>
+    
+            <div class="mt-3 d-flex justify-content-end">
+              <button
+                *ngIf="!commande.cde_Valide && commande.cde_Numcommande == 888888"
+                nz-button
+                nzType="default"
+                class="blue-button me-2"
+                (click)="editCommande(commande.cde_Id)"
+              >
+                <i nz-icon nzType="edit"></i> Modifier
+              </button>
+    
+              <button
+                nz-button
+                nzType="default"
+                class="red-button me-2"
+                nzTheme="outline"
+                (click)="deleteCommande(commande.cde_Id)"
+                *ngIf="!commande.cde_Valide && commande.cde_Numcommande == 888888"
+              >
+                <i nz-icon nzType="delete"></i> Supprimer
+              </button>
+            <button
+              class="flex items-center justify-center px-4 py-1 text-black transition rounded val hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 "
+              (click)="validerCommande(commande.cde_Id)"
+              [disabled]="validatingCommandeId === commande.cde_Id"
+              *ngIf="!commande.cde_Valide && commande.cde_Numcommande == 888888"
+            >
+              <ng-container *ngIf="validatingCommandeId === commande.cde_Id; else defaultContent">
+                <!-- Spinner -->
+                <svg
+                  class="w-5 h-5 text-white animate-spin"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                <span class="ml-2">Validation...</span>
+              </ng-container>
+              <ng-template #defaultContent>
+                Valider
+              </ng-template>
+            </button>
+            <!-- *ngIf="commande.cde_Numcommande != 888888" -->
+            <button class="buttonCust"
+              style="margin-left: 10px;"
+              (click)="isApercuVisible(i)"
+            >
+              Aperçu
+            </button>
+            </div>
+          </nz-card>
+        </div>
+      </div>
+      
+      
+      <div *ngIf="commandes.length === 0 && selectedMonth && selectedYear" class="mt-8 text-center text-gray-500">
+        <p>Aucune commande trouvée pour cette période.</p>
+      </div>
+    </nz-layout>
+    
+  </div>
+</div>
+
+<div *ngIf="commandeApercu as commande">
+  <app-apercucommande [(isVisible)]="isApercuModalVisible" [commandeDetails]="{
+    date: commande.cde_Datecreation,
+    heure:commande.cde_Heurecreation,
+    selectedAdresse: commande.adresseLivraison,
+    selectedContact: commande.contact,
+    reference: commande.cde_Reference,
+    livraisonDate: commande.cde_Datelivraison,
+    livraisonDateReturn: commande.cde_Dateretour,
+    livraisonTimeStartReturn: commande.cde_Heureretourdebut,
+    livraisonTimeEndReturn: commande.cde_Heureretourfin,
+    livraisonTimeStart: commande.cde_Heurelivraisondebut,
+    livraisonTimeEnd: commande.cde_Heurelivraisonfin,
+    cde_Livraisonobservations: commande.cde_Livraisonobservations,
+    cde_Contactobservations: commande.cde_Contactobservations,
+    commandeArticles: commande.articles,
+    numCommande: commande.cde_Numcommande 
+  }"></app-apercucommande>
+</div>
+  
+
+<!-- Pagination -->
+<div class="flex justify-center mt-6">
+  <nz-pagination 
+    [(nzPageIndex)]="currentPage"
+    [nzTotal]="totalCommandes"
+    [nzPageSize]="pageSize"
+    [nzShowSizeChanger]="false"
+    (nzPageIndexChange)="onPageChange($event)">
+  </nz-pagination>
+</div>
+

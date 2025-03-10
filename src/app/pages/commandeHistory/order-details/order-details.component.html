@@ -1,0 +1,24 @@
+<div class="container border rounded p-3 my-3 bg-light">
+  <div class="row mb-2">
+    <div class="col">
+      <strong>N° Commande:</strong> {{ order.numero }}
+    </div>
+    <div class="col">
+      <strong>Référence:</strong> {{ order.reference }}
+    </div>
+    <div class="col">
+      <strong>Date de livraison:</strong> {{ order.dateLivraison }}
+    </div>
+    <div class="col text-right">
+      <strong>Total TTC:</strong> <span class="text-danger">{{ order.totalTTC }} euros</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <strong>Date de création:</strong> {{ order.dateCreation  }}
+    </div>
+    <div class="col">
+      <strong>Date de reprise:</strong> {{ order.dateReprise  }}
+    </div>
+  </div>
+</div>

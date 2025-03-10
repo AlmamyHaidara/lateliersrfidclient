@@ -1,0 +1,324 @@
+<style>
+    .header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* margin-bottom: 20px; */
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+  
+    .company-logo {
+      display: flex;
+      align-items: center;
+      
+    }
+  
+    .company-logo img {
+      height:100px;
+      margin-right: 10px;
+    }
+  
+    .order-info {
+      text-align: right;
+    }
+  
+    .details-table {
+      width: 100%;
+      /* margin-bottom: 10px; */
+      border-collapse: collapse;
+    }
+  
+    .details-table th,
+    .details-table td {
+      border: 1px solid #000;
+      padding: 6px;
+      text-align: center;
+      font-size: 14px;
+    }
+  
+    .details-section {
+      /* margin-top: 20px; */
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 8px;
+    }
+  
+    .details-title {
+      font-weight: bold;
+      background-color: #f0f0f0;
+      padding: 5px;
+      border-bottom: 1px solid #000;
+    }
+  
+    .details-content {
+      padding: 5px;
+    }
+  
+    .table-container {
+      margin-top: 20px;
+    }
+  
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .table-container th,
+    .table-container td {
+      border: 1px solid #000;
+      padding: 6px;
+      text-align: center;
+    }
+  
+    .footer-section {
+      margin-top: 20px;
+    }
+    
+    .headerG {
+      text-align: center;
+      border: 2px solid #000;
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 6px;
+    }
+    /* .grid-fax {
+      border: 2px solid #000;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 10px;
+    } */
+    
+    
+    .grid-reference {
+      border: 2px solid #000;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .grid-pied {
+      text-align: center;
+      transform: translateY(30px);
+    }
+    
+    .grid-content table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .grid-content th, .grid-content td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    .grid-content th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+    
+    .bouton{
+      margin-top: 20px;
+    }
+    .company-details {
+      font-style: normal;
+      font-size: 10px;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+    
+    .company-details a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    
+    .company-details a:hover {
+      text-decoration: underline;
+    }
+    
+    
+  </style>
+  
+  <body>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Aperçu de la Commande" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="50%" style="position: relative;">
+      <ng-container *nzModalContent>
+        <div id="printable-area">
+          <!-- Header Section -->
+          <div class="header-section">
+  
+            <div class="company-logo">
+              <img src="assets/Login/img.png" alt="Logo Société">
+              <span class="card-title" style="font-size: 24px; font-weight: bold;">{{commandeDetails.cli_Societe}}</span>
+               <!-- <span style="font-size: 24px; font-weight: bold;">LATELIERS</span> -->
+            </div>
+          
+            <div>
+              <div class="headerG">
+                <span>Commande N°: {{commandeDetails.numCommande}}</span>
+              </div>
+              <div class="grid-content">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>DATE</th>
+                      <th>HEURE</th>
+                      <th>CODE CLIENT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <td>{{commandeDetails.date | date: 'dd/MM/yyyy'}}</td>
+                      <td>{{commandeDetails.heure | date: 'HH:mm'}}</td>
+                      <td style="text-align: center;">{{clientData.cli_Codeclient}} </td>
+                  </tbody>
+                </table>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <div class="parti" nz-row [nzGutter]="20" style="padding-top: 10px;">
+  
+            <div nz-col nzSpan="12" class="d1" style="min-height: 300px;">
+              <div class="d1d1" style="min-height: 80%;">
+                <div class="details-section"> 
+                  <div class="details-title">ADRESSE DE LIVRAISON</div>
+                  <div class="details-content">
+                    <p>
+                      {{ commandeDetails.selectedAdresse?.adr_Adresse }}<br>
+                      {{ commandeDetails.selectedAdresse?.adr_Ville }}<br>
+                      
+                    
+                    </p>
+                      <p>
+                        {{commandeDetails.selectedContact?.cot_Nom}} - {{commandeDetails.selectedContact?.cot_Prenom}}    <br>
+                        {{commandeDetails.selectedContact?.cot_Portable}}-{{commandeDetails.selectedContact?.cot_Telephone}}
+                      </p>
+                      <p>
+                        {{commandeDetails.cde_Contactobservations}}
+                      </p>
+                      <p>
+                        {{commandeDetails.cde_Livraisonobservations}}
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="d1d2" style="font-size: 13px; min-height: 20%;
+               max-height: 20%;display: flex; justify-content: center; align-items: center;"
+              >
+                <span style="border: solid 1px; border-radius: 5px; padding: 8px; display:flex; flex-direction:column;
+                 justify-content: center; align-items: center; width: 100%;"
+                >
+                  <span>Mode de règlement</span> 
+                  <strong>{{clientData.modePaiement.mpa_Code}} - {{clientData.modePaiement.mpa_Libelle}} - {{clientData.modePaiement.mpa_Type}}</strong>
+                </span>
+              </div>
+            </div>
+          
+            <div nz-col nzSpan="12" class="d2" style="min-height: 300px;">
+              <div class="details-section d2d1" style="min-height: 100%;">
+                <div class="details-title">CLIENT</div>
+                <div class="details-content">
+                  <p>
+                    {{clientData.cli_Societe}}<br>
+                    {{clientData.cli_Adresse}}<br>
+                    {{clientData.cli_Ville}}<br>
+                    <span style="padding-top: 12px;">
+                      <strong>Tel : {{clientData.cli_Telephone}}</strong>  
+                    </span>
+
+                  <table class="details-table">
+                    <tr>
+                      <th>N°TVA</th>
+                      <th>SIRET</th>
+                    </tr>
+                    <tr>
+                      <td>{{clientData.cli_NumTva}}</td>
+                      <td>{{clientData.cli_Siret}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 20px;">
+            <table class="details-table">
+              <tr>
+                <th>A LIVRER LE</th>
+                <td>{{ commandeDetails.livraisonDate | date: 'dd/MM/yyyy' }}</td>
+                <th>DE</th>
+                <td>{{ commandeDetails.livraisonTimeStart | date: 'HH:mm' }}</td>
+                <th>A</th>
+                <td>{{ commandeDetails.livraisonTimeEnd | date: 'HH:mm' }}</td>
+              </tr>
+              <tr>
+                <th>REPRISE LE</th>
+                <td>{{ commandeDetails.livraisonDateReturn | date: 'dd/MM/yyyy' }}</td>
+                <th>DE</th>
+                <td>{{ commandeDetails.livraisonTimeStartReturn | date: 'HH:mm' }}</td>
+                <th>A</th>
+                <td>{{ commandeDetails.livraisonTimeEndReturn | date: 'HH:mm' }}</td>
+              </tr>
+            </table>
+            <!-- <span>Mode de règlement: <strong>{{clientData.modePaiement.mpa_Code}} - {{clientData.modePaiement.mpa_Libelle}} - {{clientData.modePaiement.mpa_Type}}</strong> </span> -->
+          </div>
+        
+      
+          
+        
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Code Article</th>
+                  <th>Désignation</th>
+                  <th>Quantité</th>
+                  <th>Remise (%)</th>
+                  <th>Prix U HT (€)</th>
+                  <th>Total Remise HT (€)</th>
+                  <th>Prix Total Remisé HT (€)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let article of commandeDetails.commandeArticles">
+                  <td>{{ article.cda_Art_Id }}</td>
+                  <td>{{ article.cda_Art_Designation}}</td>
+                  <td>{{ article.cda_Quantite }}</td>
+                  <td>{{ article.cda_Remise }}</td>
+                  <td>{{ article.cda_Prixht | customNumber }}</td>
+                  <td>{{ article.cda_TotalRemiseHT | customNumber }}</td>
+                  <td>{{ article.cda_PrixTotalRemiseHT | customNumber }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+          <div class="grid-reference">
+            <strong> REFERENCE CLIENT: {{commandeDetails.reference}} </strong>
+          </div>
+  
+          
+          <div class="grid-pied">
+            <address class="company-details">
+              LATELIERS SARL AU CAPITAL DE 20,000 EUROS
+              SIRET 83880725300011 | NAF 8129B | TVA INTRACOMMUNAUTAIRE FR47838807253<br>
+              25 RUE DE TURBIGO, 75002 PARIS
+              ZA DES EPLUCHES, 54 RUE D'EPLUCHES, 95310 SAINT OUEN L'AUMONE<br>
+              TEL: 0142603178 | E-MAIL: <a href="mailto:contact@lateliersma.com">contact&#64;lateliersma.com</a>
+              SITE WEB: <a href="http://www.lateliersma.fr" target="_blank">www.lateliersma.fr</a>
+            </address>
+          </div>
+         
+        </div>
+        <button nz-button nzType="default" (click)="printPreview()" class="bouton" 
+          style="position: absolute; bottom: 10px;"
+        >
+          Imprimer
+        </button>
+      </ng-container>
+    </nz-modal>
+  </body>
+  

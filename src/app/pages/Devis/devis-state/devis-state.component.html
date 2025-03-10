@@ -1,0 +1,105 @@
+<div class="page__content shadow p-1 position-relative">
+    <div class="text-center mt-3">
+      <h1 class="sousc">Historiques des commandes</h1>
+    </div>
+  
+    <div class="row mt-5">
+      <!-- Sélection de l'année -->
+      <nz-form-item class="col-md-4">
+        <nz-form-label nzFor="yearSelect">Année:</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            class="custom-select"
+            [(ngModel)]="selectedYear"
+            (ngModelChange)="onDateChange()"
+            nzPlaceHolder="Choisir l'année"
+          >
+            <nz-option *ngFor="let year of years" [nzValue]="year.value" [nzLabel]="year.label"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <!-- Sélection du mois -->
+      <nz-form-item class="col-md-6">
+        <nz-form-label nzFor="monthSelect">Mois:</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            class="custom-select"
+            [(ngModel)]="selectedMonth"
+            (ngModelChange)="onDateChange()"
+            nzPlaceHolder="Choisir le mois"
+          >
+            <nz-option *ngFor="let month of months" [nzValue]="month.value" [nzLabel]="month.label"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  
+    <nz-layout class="scrollable-card mt-4">
+      <div class="row g-3">
+  
+        <div *ngFor="let commande of commandes" class="col-md-6 mb-3">
+          <nz-card class="custom-card">
+            <nz-card-tab>
+              <nz-tabset nzSize="small">
+                <!-- Onglet 1 : Détails de la commande -->
+                <nz-tab nzTitle="La commande">
+                  <!-- Contenu de la commande -->
+                  <div class="row mb-2">
+                    <div class="col-md-6">
+                      <strong>N° Commande:</strong> {{ commande.cde_Numcommande }}
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <strong>Référence:</strong> {{ commande.cde_Reference }}
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-md-6">
+                      <strong>Date de livraison:</strong> {{ commande.cde_Datelivraison | date:'dd/MM/yyyy' }}
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <strong>Total ht:</strong> <span class="text-danger">{{ commande.cde_Totalht }} euros</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <strong>Date de création:</strong> {{ commande.cde_Datecreation | date:'dd/MM/yyyy' }}
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <strong>Date de reprise:</strong> {{ commande.cde_Dateretour | date:'dd/MM/yyyy' }}
+                    </div>
+                  </div>
+                </nz-tab>
+  
+  
+  
+                <nz-tab nzTitle="Suivi de la commande">
+                  <app-order-tracking [commande]="commande"></app-order-tracking>
+                </nz-tab>
+              </nz-tabset>
+            </nz-card-tab>
+  
+  
+            <div class="d-flex justify-content-end mt-3">
+              <button nz-button nzType="default" class="blue-button me-2" (click)="editCommande(commande.cde_Id)">
+                <i nz-icon nzType="edit"></i> Modifier
+              </button>
+              <button nz-button nzType="default" class="red-button me-2" nzTheme="outline" (click)="deleteCommande(commande.cde_Id)">
+                <i nz-icon nzType="delete"></i> Supprimer
+              </button>
+              <button nz-button nzType="primary" class="green-button" (click)="validerCommande(commande.cde_Id)">
+                <i nz-icon nzType="check"></i> Valider
+              </button>
+            </div>
+          </nz-card>
+        </div>
+      </div>
+  
+    
+  
+      <div *ngIf="commandes.length === 0 && selectedMonth && selectedYear">
+        <p>Aucune commande trouvée pour cette période.</p>
+      </div>
+    </nz-layout>
+  </div>
+  

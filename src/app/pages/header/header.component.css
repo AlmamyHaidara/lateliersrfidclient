@@ -1,0 +1,273 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.h-custom {
+  height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-y: hidden;
+  max-height: 1000px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: #000000;
+  box-shadow: 0px 4px 6px rgba(249, 245, 245, 0.5);
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.logo img {
+  max-width: 300px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  padding-right: 40%;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  margin-left: 100%;
+  position: relative;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #951010, transparent);
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #951010;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.haut {
+  margin-bottom: 230px;
+}
+
+.btn.btn-danger.btn-lg {
+  width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.btn.btn-danger.btn-lg:hover {
+  background-color: white;
+  color: #fff;
+  transform: scale(1.05);
+  color: #000000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-danger.btn-lg:active {
+  background-color: #c82333;
+  transform: scale(0.95);
+}
+
+
+
+
+
+
+
+
+
+
+
+.text-body {
+  font-size: 18px;
+}
+
+.compte {
+  font-size: 16px;
+}
+
+.image img {
+  width: 1000px;
+  padding-bottom: 200px;
+}
+
+.mdp {
+  text-decoration-line: underline;
+}
+.text-body {
+  font-size: 1rem; /* 16px */
+}
+
+.compte {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 5px;
+  }
+
+  .nav-links {
+    padding-right: 20%;
+  }
+
+  .logo img {
+    max-width: 200px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  .haut {
+    margin-bottom: 150px;
+  }
+
+  .image img {
+    width: 100%;
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: auto;
+  }
+
+  .nav-links {
+    padding-right: 10%;
+  }
+
+  .logo img {
+    max-width: 150px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .haut {
+    margin-bottom: 100px;
+  }
+
+  .image img {
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    margin-right: 20px;
+  }
+
+  .nav-links a {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .logo img {
+    max-width: 100px;
+  }
+
+  .nav-links a {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+}
+/* Ajouter une transition aux liens de la navbar */
+.nav-links a {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Ajouter une animation de hover sur les boutons */
+.btn.btn-danger.btn-lg {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn.btn-danger.btn-lg:hover {
+  background-color: white;
+  color: #fff;
+  transform: scale(1.05);
+  color: #000000;
+}
+
+/* Ajouter une animation de survol sur les liens de la navbar */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #951010, transparent);
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #951010;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Ajouter une animation de zoom sur les images */
+.image img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+

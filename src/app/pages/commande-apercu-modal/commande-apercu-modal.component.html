@@ -1,0 +1,128 @@
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  nz-modal {
+    font-size: 14px;
+  }
+
+  nz-card {
+    height: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  nz-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); 
+  }
+
+  nz-card p {
+    margin: 0;
+    padding: 4px 0;
+  }
+
+  /* Container for scrollable table */
+  .table-container {
+    max-height: 200px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+  }
+
+  nz-table {
+    width: 100%;
+  }
+
+  .card-content {
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .card-text-muted {
+    color: #6c757d;
+  }
+
+  /* Custom scrollbar for better UI */
+  .table-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .table-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  .table-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+</style>
+
+<body>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Aperçu de la Commande" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="50%">
+    <ng-container *nzModalContent>
+      <!-- Adresse Card -->
+      <nz-card nzTitle="Adresse" nzBordered="true" nzSize="default">
+        <p class="card-content">
+          <span class="card-title">Adresse :</span> 
+          {{ commandeDetails.selectedAdresse?.adr_Adresse }}, 
+          {{ commandeDetails.selectedAdresse?.adr_Ville }}
+        </p>
+      </nz-card>
+
+      <!-- Contact Card -->
+      <nz-card nzTitle="Contact" nzBordered="true" nzSize="default">
+        <p class="card-content">
+          <span class="card-title">Nom :</span> {{ commandeDetails.selectedContact?.cot_Nom }} <br>
+          <span class="card-title">Prénom :</span> {{ commandeDetails.selectedContact?.cot_Prenom }}
+        </p>
+      </nz-card>
+
+      <!-- Référence Card -->
+      <nz-card nzTitle="Référence" nzBordered="true" nzSize="default">
+        <p class="card-content card-text-muted">
+          {{ commandeDetails.reference }}
+        </p>
+      </nz-card>
+
+      <!-- Date de Livraison Card -->
+      <nz-card nzTitle="Date de Livraison" nzBordered="true" nzSize="default">
+        <p class="card-content">
+          <span class="card-title">Date :</span> {{ commandeDetails.livraisonDate | date: 'dd/MM/yyyy' }}<br>
+          <span class="card-title">Horaire :</span> de {{ commandeDetails.livraisonTimeStart | date: 'HH:mm' }} à {{ commandeDetails.livraisonTimeEnd | date: 'HH:mm' }}
+        </p>
+      </nz-card>
+
+      <!-- Articles Table Card -->
+      <nz-card nzTitle="Articles" nzBordered="true" nzSize="default">
+        <div class="table-container">
+          <nz-table #articlesTable [nzData]="commandeDetails.commandeArticles" nzSize="small">
+            <thead>
+              <tr>
+                <th nzWidth="50%">Désignation</th>
+                <th nzWidth="20%">Quantité</th>
+                <th nzWidth="30%">Prix Unitaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of commandeDetails.commandeArticles">
+                <td>{{ article.cda_Art_Designation }}</td>
+                <td>{{ article.cda_Quantite }}</td>
+                <td>{{ article.cda_PrixUnitaire | currency: 'EUR' }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </nz-card>
+    </ng-container>
+  </nz-modal>
+</body>

@@ -1,0 +1,128 @@
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<body>
+<app-navbar></app-navbar>
+
+<section id="creer">
+    <div style="height: auto; padding: 50px 0;">
+      <div class="d-flex justify-content-center align-items-center" style="gap: 5%; flex-wrap: wrap; height: auto;">
+        <nz-carousel nzAutoPlay class="carouselPerso">
+          @for (index of array; track index) {
+            <div nz-carousel-content>
+              <img [src]="index" alt="Image">
+            </div>
+          }
+        </nz-carousel>
+
+        <div>
+          <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="text-center mb-4">
+              <div class="row">
+                <div class="col-6 d-flex justify-content-start align-items-center">
+                  <a routerLink="/inscription" class="retour"><i class="fas fa-angle-double-left icone"></i></a>
+                </div>
+                <div class="col-6 d-flex justify-content-start align-items-center createCompte">
+                  <p class="text-center mb-0 connect">Créer votre compte</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-user"></i></span>
+                <input type="text" id="emp_nom" class="form-control form-control-lg" placeholder="Nom" name="emp_nom" [(ngModel)]="employe.Emp_Nom" required/>
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-id-badge"></i></span>
+                <input type="text" id="emp_prenom" name="emp_prenom" class="form-control form-control-lg" placeholder="Prénom" [(ngModel)]="employe.Emp_Prenom" />
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+              <span class="p-4 input-group-text"><i class="fas fa-envelope"></i></span>
+              <input type="email" id="Emp_AdresseMail" name="Emp_AdresseMail" class="form-control form-control-lg" placeholder="Adresse Email" [(ngModel)]="employe.Emp_AdresseMail" />
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-phone"></i></span>
+                <input type="text" id="emp_numerotelephone" name="emp_numerotelephone" class="form-control form-control-lg" placeholder="Numéro de Téléphone" [(ngModel)]="employe.Emp_NumeroTelephone" />
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-user-tie"></i></span>
+                <select id="emp_poste" name="emp_poste" class="form-select form-select-lg" [(ngModel)]="employe.Emp_Pst_Id">
+                  <option value="" disabled selected hidden>Choisissez votre poste</option>
+                  <option *ngFor="let poste of postes" [value]="poste.pst_Id">{{ poste.pst_Designation }}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-lock"></i></span>
+                <input type="password" id="emp_motdepasse" name="emp_motdepasse" class="form-control form-control-lg" placeholder="Mot de passe" [(ngModel)]="employe.Emp_MotDePasse" required/>
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-lock"></i></span>
+                <input type="password" id="passwordconf" name="passwordconf" class="form-control form-control-lg" placeholder="Confirmer le mot de passe" required [(ngModel)]="passwordConf" />
+              </div>
+            </div>
+
+
+            <div class="form-outline mb-3">
+              <div class="input-group">
+                <span class="input-group-text p-4"><i class="fas fa-image text-primary"></i></span>
+                <input 
+                  type="text" 
+                  id="Soc_LogoUrl" 
+                  class="form-control form-control-lg cursor-pointer" 
+                  placeholder="Ajouter une image (facultatif)" 
+                  [value]="fileName" 
+                  readonly 
+                  (click)="fileInput.click()" 
+                />
+                <input type="file" #fileInput id="Emp_LogoUrl" class="form-control form-control-lg" class="hidden"
+                 name="Emp_LogoUrl" accept="image/*" [(ngModel)]="employe.Emp_LogoUrl" (change)="onFileSelected($event)" 
+                />
+              </div>
+            </div>
+
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" class="btn btn-danger btn-lg" [disabled]="spinner">
+                @if(spinner){
+                  <span class="spinner-border"></span>
+                }@else{ 
+                  <span>Inscription</span>
+                }
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+</body>
+
+

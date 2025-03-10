@@ -1,0 +1,102 @@
+<nz-card class="shadow">
+  <form (ngSubmit)="addContact()">
+    <div class="row mb-3">
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Civilite'" nzRequired>Civilité</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="cot_Civilite" name="cot_Civilite" #civilite [(ngModel)]="newContact.cot_Civilite" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Prenom'" nzRequired>Prénom</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="cot_Prenom" name="cot_Prenom" [(ngModel)]="newContact.cot_Prenom" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Nom'" nzRequired>Nom</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="text" id="cot_Nom" name="cot_Nom" [(ngModel)]="newContact.cot_Nom" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Email'" nzRequired>Email</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="email" id="cot_Email" name="cot_Email" [(ngModel)]="newContact.cot_Email" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Telephone'" nzRequired>Téléphone</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="tel" id="cot_Telephone" name="cot_Telephone" [(ngModel)]="newContact.cot_Telephone" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Portable'" nzRequired>Portable</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="tel" id="cot_Portable" name="cot_Portable" [(ngModel)]="newContact.cot_Portable" required>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_Fax'">Fax</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="tel" id="cot_Fax" name="cot_Fax" [(ngModel)]="newContact.cot_Fax">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'cot_fon_id'" nzRequired>Fonction</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              nzAllowClear
+              id="cot_fon_id"
+              name="cot_fon_id"
+              [(ngModel)]="newContact.fon_Id"
+              required
+            >
+              <nz-option
+                *ngFor="let fonction of fonctions"
+                [nzValue]="fonction.fon_Id"
+                [nzLabel]="fonction.fon_Intitule"
+              >
+                {{ fonction.fon_Intitule }}
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="text-center">
+      <button nz-button nzType="primary" type="button" nzDanger (click)="fermer()" [disabled]="spinner">Annuler</button>
+      <button nz-button nzType="default" type="submit" [disabled]="spinner">
+        @if(!spinner){
+          <span>Ajouter</span>
+        }@else{
+          <span class="spinner-border" style="width: 15px; height: 15px;"></span>
+        }
+      </button>
+    </div>
+  </form>
+</nz-card>

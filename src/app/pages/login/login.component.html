@@ -1,0 +1,58 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  
+  <div class="spinner-overlay" *ngIf="isLoading">
+    <nz-spin [nzSpinning]="true" [nzSize]="'large'" class="custom-spinner"></nz-spin>
+    <div class="spinner-text">Connexion en cours...</div>
+  </div>
+  <div>
+    <app-navbar></app-navbar>
+    <section>
+      <div class="haut" style="height: auto; padding: 50px 0;">
+        <!-- <div class="container-fluid h-custom"> -->
+          <div class="d-flex justify-content-center align-items-center" style="gap: 5%; flex-wrap: wrap; height: auto;">
+            <nz-carousel nzAutoPlay class="carouselPerso">
+              @for (index of array; track index) {
+                <div nz-carousel-content>
+                  <img [src]="index" alt="Image">
+                </div>
+              }
+            </nz-carousel>
+  
+            <div>
+              <form (ngSubmit)="login()">
+                <h2 class="mb-5 connect">Connectez-vous à votre compte</h2>
+            
+                <div class="form-outline mb-5 d-flex align-items-center">
+                  <div class="input-group input-group-lg flex-grow-1">
+                    <span class="input-group-text p-4 custom-padding"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="email" class="form-control form-control-lg custom-padding" placeholder="Adresse email" [(ngModel)]="email" name="email" />
+                  </div>
+                </div>
+  
+                <div class="form-outline mb-3 d-flex align-items-center">
+                  <div class="input-group input-group-lg flex-grow-1">
+                    <span class="input-group-text p-4 custom-padding"><i class="fas fa-lock"></i></span>
+                    <input type="{{ passwordVisibility ? 'text' : 'password' }}" id="password" class="form-control form-control-lg custom-padding" placeholder="Mot de passe" [(ngModel)]="password" name="password" />
+                    <button class="btn btn-secondary custom-padding2" type="button" (click)="togglePasswordVisibility()">
+                      <i class="fas" [ngClass]="{ 'fa-eye-slash': !passwordVisibility, 'fa-eye': passwordVisibility }"></i>
+                    </button>
+                  </div>
+                </div>
+  
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="/reset-password" class="link-danger mdp">Mot de passe oublié ?</a>
+                </div>
+  
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="submit" class="btn btn-danger btn-lg w-100" style="padding-left: 2.5rem; padding-right: 2.5rem;">Se connecter</button>
+                  <p class="small fw-bold mt-2 pt-1 mb-0 compte">Vous n’avez pas de compte ? <a href="inscription" class="link-danger">Inscrivez-vous</a></p>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </section>
+  </div>

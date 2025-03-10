@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
+
+<nz-layout class="app-layout">
+  <nz-content>
+
+
+
+    <div class="inner-content2">
+      <div class=" textList">
+        <button type="button" class="btn btn-primary retour" routerLink="/listCollection" >
+          <i class="fa-regular fa-circle-left"></i>
+        </button>
+      </div>
+
+      <div class="button-retour">
+
+        <span>LISTES DES COULEURS </span>
+        <div class="etapes mt-5-auto">
+          <span> 3/5   <i class="fas fa-step-forward text-success-emphasis"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-content3 d-flex flex-column mt-5">
+      <div class="collection">
+        <span>{{collectionName }}</span>
+      </div>
+      <div class="grid1 d-flex">
+
+        <div class="card-container" *ngIf="!loading">
+          <div class="card" *ngFor="let color of colors" (click)="showDimensions(color.aga_id,color.aga_designation)">
+            <div class="container">
+              <p>{{ color.aga_designation }}</p>
+            </div>
+          </div>
+        </div>
+        <c-spinner *ngIf="loading" color="warning" variant="grow"></c-spinner>
+      </div>
+
+      <div class="pagination-container">
+      </div>
+    </div>
+  </nz-content>
+</nz-layout>

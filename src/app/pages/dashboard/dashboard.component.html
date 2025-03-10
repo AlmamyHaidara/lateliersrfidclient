@@ -1,0 +1,144 @@
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<nz-layout class="app-layout">
+  <nz-content>
+
+    <div class="mt-5 inner-content3 d-flex flex-column">
+      <c-carousel [dark]="true" [wrap]="false">
+        <c-carousel-indicators></c-carousel-indicators>
+        <c-carousel-inner>
+          <c-carousel-item *ngFor="let slide of slides; index as i;">
+            <img
+              [src]="slide.src"
+              alt="{{slide.title}}"
+              class="d-block w-100 carousel-image"
+              loading="lazy"
+            />
+            <c-carousel-caption class="d-none d-md-block">
+              <h5 style="color: white;font-size: 1.4rem;font-weight: 400;text-shadow: 4px 4px 10px rgba(0, 0, 0, 1);" >
+                {{slide.title}}
+              </h5>
+              <p>{{slide.subtitle}}</p>
+            </c-carousel-caption>
+          </c-carousel-item>
+        </c-carousel-inner>
+        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+      </c-carousel>
+    </div>
+    <div class="flex flex-wrap justify-around gap-6 mt-5 inner-content5">
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-yellow-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="text-xl font-bold text-gray-700">
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-yellow-400 rounded-lg">
+            ⏳ Commandes en attente
+          </span>
+        </h3>
+        
+        
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+            <p class="text-5xl font-extrabold text-blue-600 count">{{ commandeEnAttente | async }}</p>
+          }
+        </div>
+
+      </div>
+      
+      <!-- Commandes annulées -->
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-red-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="text-xl font-bold text-gray-700">
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-red-400 rounded-lg">
+            ❌ Commandes annulées
+          </span>
+        </h3>
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+            <p class="text-5xl font-extrabold text-red-600 count">{{ cancelledOrdersCount }}</p>
+          }
+        </div>
+
+
+  
+
+      </div>
+    
+      <!-- Commandes livrées -->
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-green-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="text-xl font-bold text-gray-700">
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-green-400 rounded-lg">
+            ✅ Commandes livrées
+          </span>
+        </h3>
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+            <p class="text-5xl font-extrabold text-green-600 count">{{ deliveredOrdersCount }}</p>
+          }
+        </div>
+      </div>
+    
+      <!-- Commandes validées -->
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-indigo-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="flex items-center text-xl font-bold text-gray-700">
+          <i class="mr-2 text-indigo-400 fas fa-check-circle"></i>
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-indigo-400 rounded-lg">
+            Commandes validées
+          </span>
+        </h3>
+        
+        
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+          <p class="text-6xl font-extrabold text-indigo-600 count">{{ commandeValider | async }}</p>
+          }
+        </div>
+      </div>
+    
+      <!-- Commandes validées du jour -->
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-yellow-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="text-xl font-bold text-gray-700">
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-yellow-500 rounded-lg">
+            📅 Commandes validées du jour
+          </span>
+        </h3>
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+            <p class="text-6xl font-extrabold text-yellow-500 count">{{ commandesDuJour | async }}</p>
+          }
+        </div>
+ 
+      </div>
+    
+      <!-- Commandes validées du mois -->
+      <div class="p-6 transition-transform transform bg-white border-l-4 border-r-4 border-purple-400 rounded-lg shadow-lg card-custom hover:shadow-xl hover:scale-105">
+        <h3 class="text-xl font-bold text-gray-700">
+          <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-purple-400 rounded-lg">
+            📆 Commandes validées du mois
+          </span>
+        </h3>
+        <div class="flex flex-col items-center mt-4 card-content">
+          @if(loading){
+            <span class="spinner-border text-primary"></span>
+          }@else{
+            <p class="text-6xl font-extrabold text-purple-600 count">{{ commandesDuMois | async }}</p>
+          }
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+
+
+  </nz-content>
+</nz-layout>

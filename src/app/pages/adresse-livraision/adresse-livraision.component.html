@@ -1,0 +1,77 @@
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+<body>
+  
+<nz-layout class="app-layout">
+  <div class="page__content shadow p-1 position-relative">
+    <div class="text-center mt-3">
+      <h1 class="sousc">Mes adresses de Livraison</h1>
+    </div>
+  </div>
+
+  <div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper" style="overflow-y: auto;">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <!-- Search Input -->
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="Rechercher..." [(ngModel)]="searchValue" (ngModelChange)="onSearch()" />
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <i nz-icon nzType="search"></i>
+              </ng-template>
+            </div>
+
+            <div class="col-sm-4 text-right">
+              <!-- Add Address Button -->
+              <button nz-button nzType="link" class="blue-button" routerLink="/addAdresse">
+                <i nz-icon nzType="plus"></i> Ajouter une nouvelle Adresse
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <nz-table #basicTable [nzData]="filteredAdresses" [nzFrontPagination]="false">
+          <thead>
+            <tr>
+              <th>Societé</th>
+              <th>Adresse</th>
+              <th>Code postal</th>
+              <th>Ville</th>
+              <th>Observations</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let adresse of filteredAdresses">
+              <td>{{ adresse.adr_Nomsociete }}</td>
+              <td>{{ adresse.adr_Adresse }}</td>
+              <td>{{ adresse.adr_Codepostal }}</td>
+              <td>{{ adresse.adr_Ville }}</td>
+              <td>{{ adresse.adr_Observations }}</td>
+              <td>
+                <div class="button-container">
+                  <button nz-button nzType="link" class="blue-button" [routerLink]="['/editAdresse', adresse.adr_Id]">
+                    <i nz-icon nzType="edit"></i> modifier
+                  </button>
+
+                  <button nz-button nzType="link" class="red-button" (click)="supprimerAdresse(adresse.adr_Id)">
+                    <i nz-icon nzType="delete"></i> supprimer
+                  </button>
+                
+               
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+
+        <nz-pagination [nzPageSize]="5" [nzTotal]="filteredAdresses.length" [(nzPageIndex)]="pageIndex"></nz-pagination>
+      </div>
+    </div>
+  </div>
+</nz-layout>
+</body>

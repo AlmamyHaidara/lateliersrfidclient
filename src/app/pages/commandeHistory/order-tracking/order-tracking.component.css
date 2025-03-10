@@ -1,0 +1,40 @@
+.order-tracking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.table-and-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; 
+}
+th,td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+th {
+  background-color: #F2F2F2;
+  text-align: left;
+}
+
+.blue-button {
+  color: #566787; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #566787; /* Border color */
+}
+
+.blue-button:hover {
+  color: #fff; /* Text color on hover */
+  background-color: #566787; /* Background color on hover */
+  border-color: #566787; /* Border color on hover */
+}

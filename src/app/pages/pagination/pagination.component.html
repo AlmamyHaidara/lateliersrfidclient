@@ -1,0 +1,29 @@
+<div *ngIf="totalPages > 1">
+    <nav aria-label="...">
+        <ul class="pagination" style=" padding: 10px; margin: auto; max-width: 90vh;">
+            <li class="page-item pg" (click)="pageClicked(currentPage-1)"
+            [ngClass]="{disabled: currentPage === 1}"
+            >
+                <span class="page-link">Previous</span>
+            </li>
+    
+            <div class="flex" style="max-width: 80%; overflow-x: scroll;">
+                <li 
+                (click)="pageClicked(page)"
+                class="page-item" 
+                *ngFor="let page of pages" 
+                [ngClass]="{active: page===currentPage}"
+                >
+                    <span class="page-link">{{page}}</span>
+                </li>
+            </div>
+            
+            <li class="page-item pg"  (click)="pageClicked(currentPage + 1)" 
+            [ngClass]="{disabled: currentPage === totalPages}"
+            >
+                <span class="page-link">Next</span>
+            </li>
+    
+        </ul>
+    </nav>
+</div>

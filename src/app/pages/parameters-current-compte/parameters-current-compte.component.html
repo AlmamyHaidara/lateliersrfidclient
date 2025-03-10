@@ -1,0 +1,55 @@
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+
+
+<body>
+    
+ 
+  <div class="container">
+    <section class="password-reset-section">
+      <h2 class="changepwd">Changer le mot de passe</h2><br><br>
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <form (ngSubmit)="changePassword()" class="champs">
+            <div class="mb-3 row">
+              <label for="oldPassword" class="form-label col-sm-4">Mot de passe actuel:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="OldPassword" [(ngModel)]="oldPassword" name="oldPassword" >
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="new-password" class="form-label col-sm-4">Nouveau mot de passe:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="new-password" [(ngModel)]="newPassword" name="newPassword" required>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="confirm-password" class="form-label col-sm-4">Confirmer le mot de passe:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+             
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary deleteva">Valider</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5 delete-account-section">
+      <h2 class="changepwd">Supprimer le compte</h2><br>
+      <p>Êtes-vous sûr de vouloir supprimer votre compte? Cette action est irréversible.</p>
+      <form (ngSubmit)="deleteAccount()" class="delete-account-form">
+        <div class="mb-3 form-check">
+          <input class="form-check-input" type="checkbox" value="" id="confirm-delete" name="confirm-delete" required>
+          <label class="form-check-label" for="confirm-delete">
+            Confirmer la suppression
+          </label>
+        </div>
+        <button type="submit" class="btn btn-danger delete" disabled>Supprimer le compte</button>
+        <!-- class="btn btn-danger delete" -->
+      </form>
+    </section>
+  </div>
+</body>

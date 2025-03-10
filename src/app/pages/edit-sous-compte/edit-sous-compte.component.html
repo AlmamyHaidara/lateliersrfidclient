@@ -1,0 +1,195 @@
+<nz-layout class="app-layout">
+  <div class="relative p-6 mb-6 text-center text-gray-800 rounded-lg shadow-lg bg-gradient-to-r from-white via-gray-50 to-gray-100">
+    <div class="absolute top-0 right-0 w-2 h-full rounded-r-lg bg-gradient-to-b from-purple-500 to-purple-600"></div>
+    <h1 class="text-4xl font-extrabold text-gray-800">Gestion sous comptes</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="mt-5 row justify-content-center">
+      <div class="col-lg-8 col-md-12">
+        <nz-card nzBordered [nzBorderless]="false" [nzHoverable]="true" class="shadow-sm">
+          <form (ngSubmit)="modifierEmploye()" class="needs-validation" novalidate>
+            <!-- Retour -->
+            <div class="mb-4 text-center">
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="24">
+                  <button
+                    type="button"
+                    class="flex items-center px-4 py-2 text-blue-600 transition duration-200 ease-in-out rounded hover:text-blue-800 hover:bg-gray-100"
+                    [routerLink]="['/ListSousCompte']"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      class="w-5 h-5 mr-2"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Retour
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nom & Prénom -->
+            <div nz-row [nzGutter]="16">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_Nom" [nzRequired]="true">Nom</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="Emp_Nom"
+                      type="text"
+                      placeholder="Nom"
+                      name="Emp_Nom"
+                      [(ngModel)]="employe.emp_Nom"
+                      required
+                      class="w-full"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_Prenom" [nzRequired]="true">Prénom</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="Emp_Prenom"
+                      type="text"
+                      placeholder="Prénom"
+                      name="Emp_Prenom"
+                      [(ngModel)]="employe.emp_Prenom"
+                      required
+                      class="w-full"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <!-- Email & Téléphone -->
+            <div nz-row [nzGutter]="16">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_AdresseMail" [nzRequired]="true">Adresse Email</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="emp_AdresseMail"
+                      type="email"
+                      placeholder="Adresse Email"
+                      name="emp_AdresseMail"
+                      [(ngModel)]="employe.emp_AdresseMail"
+                      required
+                      class="w-full"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_NumeroTelephone" [nzRequired]="true">Numéro de Téléphone</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="Emp_NumeroTelephone"
+                      type="tel"
+                      placeholder="Téléphone"
+                      name="Emp_NumeroTelephone"
+                      [(ngModel)]="employe.emp_NumeroTelephone"
+                      required
+                      class="w-full"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <!-- Poste & Mot de Passe -->
+            <div nz-row [nzGutter]="16">
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_poste" [nzRequired]="true">Poste</nz-form-label>
+                  <nz-form-control>
+                    <nz-select
+                      id="emp_poste"
+                      [(ngModel)]="employe.emp_Pst_Id"
+                      name="emp_poste"
+                      nzPlaceHolder="Choisissez un poste"
+                      class="w-full"
+                    >
+                      <nz-option
+                        *ngFor="let poste of postes"
+                        [nzValue]="poste.pst_Id"
+                        [nzLabel]="poste.pst_Designation"
+                      ></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item>
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_motdepasse" [nzRequired]="true">Mot de Passe</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="emp_motdepasse"
+                      type="password"
+                      placeholder="Mot de Passe"
+                      name="emp_motdepasse"
+                      [(ngModel)]="employe.Emp_MotDePasse"
+                      required
+                      class="w-full"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+
+            <!-- Photo de Profil -->
+            <nz-form-item>
+              <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_LogoUrl">Photo de Profil</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  id="Emp_LogoUrl"
+                  type="file"
+                  name="emp_logo_url"
+                  accept="image/*"
+                  [(ngModel)]="employe.emp_LogoUrl"
+                  class="w-full"
+                />
+              </nz-form-control>
+            </nz-form-item>
+
+            <!-- Boutons -->
+            <div class="pt-4 text-center">
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                class="mr-2"
+                type="submit"
+              >
+                Modifier
+              </button>
+              <button
+                nz-button
+                nzType="default"
+                nzSize="large"
+                class="text-danger"
+                [routerLink]="['/ListSousCompte']"
+              >
+                Annuler
+              </button>
+            </div>
+          </form>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+</nz-layout>

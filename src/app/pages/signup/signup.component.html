@@ -1,0 +1,95 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<body style="height: auto;">
+
+<app-navbar></app-navbar>
+
+
+<section>
+    <div class="d-flex justify-content-around align-items-center" style="height: auto; flex-wrap: wrap;">
+      <div>
+        <nz-carousel nzAutoPlay class="carouselPerso">
+          @for (index of array; track index) {
+            <div nz-carousel-content>
+              <img [src]="index" alt="Image">
+            </div>
+          }
+        </nz-carousel>
+        <!-- <img src="assets/Login/lateliersImg-compressed.jpg " class="img-fluid image" alt="Sample image"> -->
+      </div>
+      <div>
+        <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          <h2 class="mb-4">Créez votre compte</h2>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+
+            <div class="form-outline parent">
+              <div class="input-group inputParent">
+                <span class="input-group-text p-4" style="font-size: 1rem;"><i class="fas fa-city"></i></span>
+                <input type="text" id="soc_raisonsociale" class="form-control form-control-lg" placeholder="Société" name="soc_raisonsociale" [(ngModel)]="societe.soc_raisonsociale" required/>
+              </div>
+            </div>
+
+            <div class="form-outline parent">
+              <div class="input-group inputParent">
+                <span class="input-group-text p-4" style="font-size: 1.25rem;"><i class="fas fa-barcode"></i></span>
+                <input type="text" id="soc_Siret" name="soc_Siret" class="form-control form-control-lg" placeholder="SIRET" [(ngModel)]="societe.soc_Siret" />
+              </div>
+            </div>
+
+            <div class="form-outline parent">
+              <div class="input-group inputParent">
+                <span class="input-group-text p-4" style="font-size: 1.10rem;"><i class="fas fa-id-card"></i></span>
+                <input type="text" id="Soc_TvaIntracommunautaire" name="Soc_TvaIntracommunautaire" class="form-control form-control-lg" placeholder="TVA Intracommunautaire" [(ngModel)]="societe.Soc_TvaIntracommunautaire" />
+              </div>
+            </div>
+
+            <div class="form-outline parent">
+              <div class="input-group inputParent">
+                <span class="input-group-text p-4" style="font-size: 1.10rem;"><i class="fas fa-envelope"></i></span>
+                <input type="email" id="Soc_AdresseEmail" name="Soc_AdresseEmail" class="form-control form-control-lg" placeholder="Adresse email" [(ngModel)]="societe.Soc_AdresseEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+              </div>
+            </div>
+
+
+            <div class="form-outline parent">
+              <div class="input-group inputParent">
+                <span class="input-group-text p-4" style="font-size: 1.10rem;"><i class="fas fa-image text-primary"></i></span>
+                <input 
+                  type="text" 
+                  id="Soc_LogoUrl" 
+                  class="form-control form-control-lg cursor-pointer" 
+                  placeholder="Ajouter une image (facultatif)" 
+                  [value]="fileName" 
+                  readonly 
+                  (click)="fileInput.click()" 
+                />
+                <input type="file" id="Soc_LogoUrl" #fileInput class="form-control form-control-lg d-none" 
+                 name="Soc_LogoUrl" accept="image/*" [(ngModel)]="societe.Soc_LogoUrl" (change)="onFileSelected($event)"  />
+
+              </div>
+            </div>
+
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 29px;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Soc_Newsletter" name="Soc_Newsletter" [(ngModel)]="societe.Soc_Newsletter">
+              <label class="form-check-label" for="Soc_Newsletter">Oui, je souhaite recevoir la newsletter de lateliers</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="societe_cgv" name="societe_cgv" [(ngModel)]="societe.soc_newsletter">
+              <label class="form-check-label" for="societe_cgv">Oui, j'accepte les CGV et la politique de confidentialité de lateliers</label>
+            </div>
+
+
+            <div class="text-center text-lg-start pt-2">
+              <button type="submit" class="btn btn-danger btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Inscription</button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+</section>
+</body>

@@ -1,0 +1,206 @@
+body{
+  font-family:'Poppins';
+}
+.custom-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.scrollable-card {
+  max-height: 650px;
+  overflow-y: auto;
+}
+label {
+  margin: 0;
+}
+.sousc{
+  font-size:1.7rem;
+  font-weight: bolder;
+}
+
+.red-button,
+.blue-button {
+  display: inline-flex; /* Ensures buttons are aligned correctly */
+  align-items: center; /* Center text and icon vertically */
+  justify-content: center; /* Center text and icon horizontally */
+  padding: 6px 12px; /* Adjust padding for desired size */
+  font-size: 14px; /* Consistent font size */
+  border-radius: 4px; /* Consistent border radius */
+  height: 36px; /* Consistent height */
+}
+
+.red-button {
+  color: #fff; /* Text color */
+  background-color: #d9534f; /* Background color */
+  border-color: #d9534f; /* Border color */
+}
+
+.red-button:hover {
+  background-color: #c9302c; /* Darker background color on hover */
+  border-color: #c9302c; /* Border color on hover */
+}
+
+.blue-button {
+  color: #566787; /* Text color */
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #566787; /* Border color */
+}
+
+.blue-button:hover {
+  color: #fff; /* Text color on hover */
+  background-color: #566787; /* Background color on hover */
+  border-color: #566787; /* Border color on hover */
+}
+
+.button-container {
+  display: flex; /* Use flexbox for alignment */
+  gap: 10px; /* Space between buttons */
+}
+
+
+
+
+.custom-select {
+  width: 30%; /* Ajustez la largeur selon vos besoins */
+}
+
+
+.bold-text {
+  font-weight: bold;
+  color: white;
+  background-color: green;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+/* Au survol, la couleur du bouton change en vert */
+.green-button:hover {
+  background-color: green; /* Vert */
+  color: white;
+}
+
+/* Ombres douces pour les cartes */
+.custom-card {
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.custom-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); 
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+body {
+  background-color: #f9f9f9; 
+}
+
+.scrollable-card {
+  padding: 10px; 
+  border-radius: 10px;
+}
+
+.text-danger{
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+
+
+.text-ordinaire{
+  font-weight: bold;
+  font-size: larger;
+}
+.nonsuccess{
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+.val{
+  border: #566787 1px solid;
+
+  padding: 0px 0px;
+}
+
+
+
+
+.select-group {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px; 
+  justify-content: flex-start; 
+}
+
+.select-container {
+  flex: 1; 
+  max-width: 200px; 
+}
+
+.select-label {
+  display: block;
+  font-size: 0.875rem; 
+  font-weight: 500; 
+  color: #4a4a4a; 
+  margin-bottom: 4px; 
+}
+
+.buttonCust{
+  padding: 8px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  &:active{
+    // background-color: whitesmoke;
+    box-shadow: 0px 0px 4px 0px black inset;
+  }
+}
+
+.custom-select {
+  width: 100%;
+  border: 1px solid #d1d5db; 
+  border-radius: 6px; 
+}
+
+strong{
+  font-size: 13px;
+}
+
+.cd{
+  width: 100%;
+  min-width: 350px;
+  /* max-height: 450px; */
+  min-height: 335px;
+}
+
+@media(max-width: 900px){
+  .cont{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #566787;
+  }
+}

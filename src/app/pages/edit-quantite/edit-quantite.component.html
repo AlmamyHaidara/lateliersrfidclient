@@ -1,0 +1,13 @@
+<div class="mb-3 pl-2" style="display: flex; justify-content: center; align-items: center;">
+  <div class="flex flex-column justify-center" style="gap: 3px;">
+    <div>
+      <button class="btn btn-outline-secondary mr-2" type="button" (click)="decrementQuantity()">−</button>
+    </div>
+    <div>
+      <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity()">+</button>
+    </div>
+  </div>
+  <input type="text" class="form-control text-center custom-input-width"
+  (keydown.enter)="KeyPressEntrer($event)"
+  [value]="article.cda_Quantite">
+</div>

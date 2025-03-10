@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+<nz-layout class="app-layout">
+  <div class="page__content shadow p-3 position-relative">
+    <div class="text-center mt-3">
+      <h1>Modifier une Adresse</h1>
+    </div>
+  </div>
+  <div class="container-fluid background-image">
+    <div class="row justify-content-center mt-sm-5">
+      <div class="col-lg-6 col-md-10">
+        <div class="card shadow">
+          <div class="card-body">
+            <form (submit)="updateAdresse()">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="adr_Nomsociete">Nom de la société</label>
+                  <input type="text" class="form-control" id="adr_Nomsociete" name="adr_Nomsociete" [(ngModel)]="adresse.adr_Nomsociete" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="adr_Adresse">Adresse</label>
+                  <input type="text" class="form-control" id="adr_Adresse" name="adr_Adresse" [(ngModel)]="adresse.adr_Adresse" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="adr_Codepostal">Code postal</label>
+                  <input type="text" class="form-control" id="adr_Codepostal" name="adr_Codepostal" [(ngModel)]="adresse.adr_Codepostal" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="adr_Telephone">Téléphone</label>
+                  <input type="text" class="form-control" id="adr_Telephone" name="adr_Telephone" [(ngModel)]="adresse.adr_Telephone" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="adr_Fax">Fax</label>
+                  <input type="text" class="form-control" id="adr_Fax" name="adr_Fax" [(ngModel)]="adresse.adr_Fax">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="adr_Email">Adresse Email</label>
+                  <input type="email" class="form-control" id="adr_Email" name="adr_Email" [(ngModel)]="adresse.adr_Email" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="adr_Ville">Ville</label>
+                  <input type="text" class="form-control" id="adr_Ville" name="adr_Ville" [(ngModel)]="adresse.adr_Ville" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="adr_Observations">Observations</label>
+                  <textarea class="form-control" id="adr_Observations" name="adr_Observations" [(ngModel)]="adresse.adr_Observations"></textarea>
+                </div>
+
+              </div>
+
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-margin modifier">Modifier</button>
+                <button type="button" class="btn btn-danger" routerLink="/adresse">Annuler</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

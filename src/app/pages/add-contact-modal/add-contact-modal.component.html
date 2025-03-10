@@ -1,0 +1,5 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Ajouter un contact" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+  <div *nzModalContent>
+    <app-contact-form (closeModal)="handleModalClose()"></app-contact-form>
+  </div>
+</nz-modal>

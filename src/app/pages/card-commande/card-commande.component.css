@@ -1,0 +1,78 @@
+.bigContainer{
+  font-family: 'Poppins';
+}
+.custom-card-width {
+  width: 100%;
+}
+
+.card-bordered {
+  border: 2px solid #343a40; /* Couleur de la bordure */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet de profondeur */
+}
+
+.card-header {
+  background-color: #343a40; /* Couleur de fond pour le header */
+  color: white; /* Couleur du texte */
+  padding: 10px; /* Espacement intérieur */
+  border-bottom: 2px solid #343a40; /* Bordure en bas du header */
+  border-radius: 8px 8px 0 0; /* Coins arrondis seulement en haut */
+}
+
+.card-footer {
+  background-color: #f8f9fa; /* Couleur de fond pour le footer */
+  padding: 10px; /* Espacement intérieur */
+  border-top: 2px solid #343a40; /* Bordure en haut du footer */
+  border-radius: 0 0 8px 8px; /* Coins arrondis seulement en bas */
+}
+
+.total {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .custom-card-width {
+    width: 100%;
+  }
+}
+
+
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item {
+  padding: 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+
+.app-delete-card:hover {
+  color: #dc3545;
+  transition: color 0.3s ease;
+}
+
+.app-quantity:hover {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+.card-title:hover {
+  color: #007bff;
+  transition: color 0.3s ease;
+}

@@ -1,0 +1,44 @@
+/* Supprimer la classe flex-column pour permettre l'alignement en ligne */
+.inner-content3 {
+  margin: auto;
+  padding: 24px;
+
+  height: 62%;
+  width: 55%;
+  border-radius: 13px;
+  display: flex; /* Ajouter flex pour utiliser Flexbox */
+}
+
+.button-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row; /* Mettre en ligne */
+  justify-content: space-around; /* Espacement équitable entre les boutons */
+  gap: 10px;
+}
+
+.button-container button {
+  min-height: 110px;
+  width: 45%; /* Largeur égale pour chaque bouton */
+  background-color: #3d5a80;
+  font-family: 'Poppins';
+  font-weight: bolder;
+  border: none;
+  box-shadow: 3px 6px 6px rgba(0, 21, 41, .35);
+}
+
+.button-container .btn .img-icon {
+  width: 22%;
+  margin-right: 10px;
+}
+
+.button-container button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.1);
+}

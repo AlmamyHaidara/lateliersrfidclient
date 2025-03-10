@@ -1,0 +1,10 @@
+footer p{font-size: 90%;}
+
+@media(max-width:1040px){
+footer p{
+    font-size: 80%;
+}}
+@media(max-width:757px){
+.container{
+    flex-direction: column;
+} }

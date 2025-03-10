@@ -1,0 +1,11 @@
+.delete {
+    margin-left: 10px;
+    width: 30px; /* Réduire la largeur */
+    height: 30px; /* Réduire la hauteur */
+    padding: 0; /* Enlever tout padding interne */
+    font-size: 14px; /* Réduire la taille du texte ou de l'icône */
+    line-height: 30px; /* Ajuster la hauteur de ligne pour centrer le contenu */
+    text-align: center; /* Centrer le contenu horizontalement */
+    margin-bottom:15px ;
+  }
+  

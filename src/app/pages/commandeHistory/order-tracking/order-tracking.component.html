@@ -1,0 +1,46 @@
+<!-- order-tracking.component.html -->
+<div class="order-tracking">
+  <nz-steps [nzCurrent]="currentStep" *ngIf="commande.cde_Numcommande != 888888">
+    <nz-step 
+    nzTitle="Commandé" 
+    [nzDescription]="'le ' + (commande?.cde_Datecreation | date: 'dd/MM/yyyy')">
+    </nz-step>
+
+    <nz-step nzTitle="Préparé"></nz-step>
+    <nz-step nzTitle="En cours de livraison"></nz-step>
+    <nz-step nzTitle="Livré"></nz-step>
+  </nz-steps>
+
+  <div class="table-and-buttons">
+    <table class="table">
+      <colgroup>
+        <col style="width: 16.75%;">
+        <col style="width: 33%;"> 
+        <col style="width: 16.75%;">
+        <col style="width: 16.75%;">
+        <col style="width: 16.75%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th><span>Code Article</span></th>
+          <th><span>Désignation</span></th>
+          <th><span>Quantité</span></th>
+          <th><span>Prix U HT (€)</span></th>
+          <th><span style="font-size: 11.3px;">Prix Total HT (€)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems">
+          <td>{{ item.cda_Art_Id }}</td>
+          <td>{{ item.cda_Art_Designation }}</td>
+          <td>{{item.cda_Quantite}}</td>
+          <td>{{item.cda_Prixht}}</td>
+          <td>{{ item.cda_PrixTotalRemiseHT }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="buttons" *ngIf="commande.cde_Numcommande != 888888">
+      <button nz-button nzType="default" class="blue-button me-2" (click)="ecrireCommentaire()">Écrire un commentaire</button>
+    </div>
+  </div>
+</div>

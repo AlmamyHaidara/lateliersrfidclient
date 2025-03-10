@@ -1,0 +1,208 @@
+.adresse, .contact, .reference, .Livraison, .DateReprise {
+  background-color: #EE6C4D;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+body{
+  font-family: 'Poppins';
+
+}
+
+
+
+.commande {
+  background-color: #3D5A80;
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+.input-group, nz-date-picker, nz-time-picker {
+  width: 80px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.total {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: Roboto;
+  margin-top: 20px;
+}
+
+.custom-btn-width, .custom-btne-width {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #A12E2E;
+  border: none;
+  margin-top: 10px;
+}
+
+.btnGauche, .btnDroite {
+  padding: 10px 30px;
+  border-radius: 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.btnGauche {
+  background-color: #EE6C4D;
+}
+
+.btnDroite {
+  background-color: #A12E2E;
+}
+
+.page__content {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.custom-card-width {
+  width: 100%;
+}
+.com{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  margin: 8px;
+}
+
+@media (max-width: 768px) {
+  .custom-card-width {
+    width: 100%;
+  }
+
+  .commande {
+    width: 100%;
+  }
+
+  .btnGauche, .btnDroite {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
+
+nz-select {
+  width: 100%;
+  margin-bottom:10px;
+}
+.highlight {
+  background-color: yellow; 
+}
+.but {
+margin-top: -10px;
+}
+
+
+.time1 {
+  display: flex;
+  align-items: center;
+}
+
+.time1 span {
+  white-space: nowrap;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+.ms-3 {
+  margin-left: 0.75rem !important;
+}
+
+.form-check {
+  margin-top: 1rem;
+}
+nz-date-picker {
+  width: 100%;
+  max-width: 100%;
+}
+
+.cardP .card{
+  width: 100%;
+  max-width: 450px;
+  height: 190px;
+}
+
+.card-title{
+  box-shadow: none;
+}
+
+@media(max-width:1773px) {
+  .cardP .card{
+    min-width: 70%;
+  }
+}
+@media(max-width:1000px) {
+  .principale{
+    flex-direction: column;
+    gap: 20px ;
+    align-items: center;
+  }
+  .cardP .card{
+    min-width: 100%;
+  }
+  .cardPsecond{
+    min-width: 100%;
+  }
+}
+.error-class {
+  border: 1px solid red;
+}
+
+
+
+@media print { 
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-area, #printable-area * {
+    visibility: visible;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* .table-container {
+    max-height: none !important;
+    overflow: visible !important;
+  } */
+
+  #printable-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+  }
+  /* ::ng-deep nz-card {
+    box-shadow: none;
+    border: none;
+  }
+  ::ng-deep nz-modal {
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+  } */
+
+  .bouton {
+    display: none;
+  }
+}

@@ -1,0 +1,33 @@
+.icon-box {
+  text-align: center;
+  margin: 15px;
+}
+.icon-box img {
+  width: 62px;
+  height: 60px;
+}
+.icon-container .w-100 {
+  display: flex;
+  justify-content: flex-start;
+}
+.icon-container .icon-box {
+  flex: 1 1 30%;
+  max-width: 30%;
+  box-sizing: border-box;
+}
+
+.text-center{
+  margin-top: 5px;
+}
+.card{
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  width: 120px;
+  height:90px;
+  border: none;
+}
+.container{
+  margin-left: 50px;
+}

@@ -1,0 +1,90 @@
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.page__content {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  background-image: url('/assets/images/rdv.png');
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+
+.page__content p {
+  font-size: 1.5rem;
+  color: #555;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.modifier{
+  background-color: #051a2f;
+}
+
+
+.page__content h1 {
+  font-size: 30px;
+  color: #000000;
+  font-family: Roboto;
+  font-weight: bolder;
+}
+
+.page__content p {
+  font-size: 1.5rem;
+  color: #555;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.btn-margin {
+  margin-right: 10px;
+}
+
+.retour{
+  font-size: 25px;
+  text-decoration: none;
+  color: #10103f;
+}
+

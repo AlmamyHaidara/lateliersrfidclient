@@ -1,0 +1,103 @@
+/* Custom Card */
+.custom-card-width {
+    width: 80%; 
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden; 
+    background-color: #f8f9fa; 
+    animation: slide-in 0.5s ease-in-out forwards; 
+    opacity: 0; 
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(-100%); 
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0); 
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-out {
+    from {
+      transform: translateX(0); 
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%); 
+      opacity: 0;
+    }
+  }
+  
+  .hidden {
+    animation: slide-out 0.5s ease-in-out forwards; 
+  }
+  
+  .custom-shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .custom-shadow:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-btn {
+    background-color: #A12E2E;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .custom-btn:hover {
+    background-color: #EE6C4D;
+  }
+  
+  .small-container {
+    max-width: 800px;  
+    margin: 0 auto;
+  }
+  
+  .custom-select-container {
+    flex: 1;
+  }
+  
+  .custom-select {
+    width: 100%; 
+  }
+  
+  .custom-quantity-container {
+    max-width: 100px;
+    margin-left: 10px;
+  }
+  
+  .custom-quantity {
+    width: 100%; 
+  }
+  
+  .row.mt-3 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif; 
+    background-color: #f5f5f5; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .card {
+    border: none; 
+  }
+  
+  
