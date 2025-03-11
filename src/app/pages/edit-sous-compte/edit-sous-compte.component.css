@@ -1,0 +1,21 @@
+input,select{
+    padding: 10px;
+    border-radius: 10px;
+    /* border-right: solid ; */
+}
+
+.file p{
+    border: solid 1px rgba(128, 128, 128, 0.459);
+    padding: 5px;
+    transition: all 0.3s ease-in-out; 
+    width: 100%;
+}
+
+:host ::ng-deep .file p:hover{
+    border-color: #007bff;  
+}
+
+.sl:hover{
+    border-color: #007bff !important; 
+}
+

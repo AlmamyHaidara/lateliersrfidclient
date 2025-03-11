@@ -36,8 +36,8 @@
             <!-- Nom & Prénom -->
             <div nz-row [nzGutter]="16">
               <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_Nom" [nzRequired]="true">Nom</nz-form-label>
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_Nom" class="text-start" [nzRequired]="true">Nom</nz-form-label>
                   <nz-form-control>
                     <input
                       nz-input
@@ -53,8 +53,8 @@
                 </nz-form-item>
               </div>
               <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_Prenom" [nzRequired]="true">Prénom</nz-form-label>
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="Emp_Prenom" [nzRequired]="true">Prénom</nz-form-label>
                   <nz-form-control>
                     <input
                       nz-input
@@ -74,8 +74,8 @@
             <!-- Email & Téléphone -->
             <div nz-row [nzGutter]="16">
               <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_AdresseMail" [nzRequired]="true">Adresse Email</nz-form-label>
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="emp_AdresseMail" [nzRequired]="true">Adresse Email</nz-form-label>
                   <nz-form-control>
                     <input
                       nz-input
@@ -90,9 +90,10 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
+
               <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_NumeroTelephone" [nzRequired]="true">Numéro de Téléphone</nz-form-label>
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="Emp_NumeroTelephone" [nzRequired]="true">Numéro de Téléphone</nz-form-label>
                   <nz-form-control>
                     <input
                       nz-input
@@ -110,40 +111,58 @@
             </div>
 
             <!-- Poste & Mot de Passe -->
-            <div nz-row [nzGutter]="16">
-              <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_poste" [nzRequired]="true">Poste</nz-form-label>
+            <div nz-row [nzGutter]="16" style="min-width: 100%;">
+              <div nz-col [nzSpan]="12" style="min-width: 100%;">
+                <nz-form-item class="flex flex-column w-full">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="emp_poste" [nzRequired]="true">Poste</nz-form-label>
                   <nz-form-control>
-                    <nz-select
+                    <select
                       id="emp_poste"
                       [(ngModel)]="employe.emp_Pst_Id"
                       name="emp_poste"
                       nzPlaceHolder="Choisissez un poste"
-                      class="w-full"
+                      class="w-full sl"
+                      style="border: solid 1px rgba(128, 128, 128, 0.459); cursor: pointer; "
                     >
-                      <nz-option
+                      <option
                         *ngFor="let poste of postes"
-                        [nzValue]="poste.pst_Id"
-                        [nzLabel]="poste.pst_Designation"
-                      ></nz-option>
-                    </nz-select>
+                        [value]="poste.pst_Id"
+                      >{{poste.pst_Designation}}</option>
+                    </select>
                   </nz-form-control>
                 </nz-form-item>
               </div>
+            </div>
+
+            <div nz-row [nzGutter]="16">
               <div nz-col [nzSpan]="12">
-                <nz-form-item>
-                  <nz-form-label class="block mb-1 text-sm font-medium" nzFor="emp_motdepasse" [nzRequired]="true">Mot de Passe</nz-form-label>
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="emp_motdepasse">Ancien Mot de Passe</nz-form-label>
                   <nz-form-control>
                     <input
                       nz-input
                       id="emp_motdepasse"
-                      type="password"
-                      placeholder="Mot de Passe"
+                      type="text"
+                      placeholder="Mot de Passe "
                       name="emp_motdepasse"
-                      [(ngModel)]="employe.Emp_MotDePasse"
-                      required
-                      class="w-full"
+                      [(ngModel)]="mdp"
+                      
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <nz-form-item class="flex flex-column">
+                  <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="N_emp_motdepasse">Nouveau Mot de Passe</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      id="N_emp_motdepasse"
+                      type="text"
+                      placeholder="Nouveau Mot de Passe "
+                      name="N_emp_motdepasse"
+                      [(ngModel)]="nouveauMDP"
+                      
                     />
                   </nz-form-control>
                 </nz-form-item>
@@ -151,17 +170,34 @@
             </div>
 
             <!-- Photo de Profil -->
-            <nz-form-item>
-              <nz-form-label class="block mb-1 text-sm font-medium" nzFor="Emp_LogoUrl">Photo de Profil</nz-form-label>
+            <nz-form-item class="flex flex-column">
+              <nz-form-label class="block mb-1 text-sm font-medium" class="text-start" nzFor="Emp_LogoUrl">Photo de Profil</nz-form-label>
               <nz-form-control>
+
+                <div class="flex items-center file" style="gap: 13px;">
+                  <p *ngIf="!selectedFileName" style="transform: translateY(10px);" (click)="fileInput.click()">
+                    Selectionnez un fichier
+                  </p>
+                  <p *ngIf="selectedFileName" class="text-gray-700" style="transform: translateY(10px);">
+                    Fichier sélectionné : <strong>{{ selectedFileName }}</strong>
+                  </p>
+          
+                  <div class="flex items-center justify-center w-10 h-10 transition duration-300 bg-gray-200 border border-gray-300 shadow-sm cursor-pointer rounded-xl hover:bg-gray-300">
+                    <svg class="w-6 h-6 text-gray-500" (click)="fileInput.click()" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </div>
+                </div>
+
                 <input
-                  nz-input
+                  #fileInput
                   id="Emp_LogoUrl"
                   type="file"
                   name="emp_logo_url"
                   accept="image/*"
                   [(ngModel)]="employe.emp_LogoUrl"
-                  class="w-full"
+                  class="hidden"
+                  (change)="onFileChange($event)"
                 />
               </nz-form-control>
             </nz-form-item>
@@ -169,15 +205,21 @@
             <!-- Boutons -->
             <div class="pt-4 text-center">
               <button
+                [disabled]="spinner"
                 nz-button
                 nzType="primary"
                 nzSize="large"
                 class="mr-2"
                 type="submit"
               >
-                Modifier
+              @if(!spinner){
+                <span>Modifier</span>
+              }@else{
+                <span class="spinner-border" style="width: 15px; height: 15px;"></span>
+              }
               </button>
               <button
+                [disabled]="spinner"
                 nz-button
                 nzType="default"
                 nzSize="large"

@@ -41,8 +41,8 @@ export class DevisStateComponent {
   selectedMonth: number | null = null;
   clientId: number | null = null;
 
-  years: NzSelectOptionInterface[] = [];
-  months: NzSelectOptionInterface[] = [
+  years: Array<{ value: string | number | null; label: string | number | null}>  = [];
+  months: Array<{ value: string | number | null; label: string | number | null}> = [
     { value: 1, label: 'Janvier' },
     { value: 2, label: 'Février' },
     { value: 3, label: 'Mars' },

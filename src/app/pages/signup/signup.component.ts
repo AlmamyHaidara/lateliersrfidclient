@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { NzCheckboxComponent } from "ng-zorro-antd/checkbox";
@@ -22,16 +22,27 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
   ],
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit{
   checked = true;
   societe: any = {
-    Soc_LogoUrl: ""
+    Soc_LogoUrl: "",
+    Soc_TvaIntracommunautaire:""
   };
   employe: any = {};
 
   fileToUpload: File | null = null;
 
   constructor(private societeService: SocieteService, private router: Router) {  }
+  
+  ngOnInit(): void {
+    let localSave = localStorage.getItem("societe"); 
+    if(localSave){
+      this.societe = JSON.parse (localSave)
+      console.log("societe trouver : ",this.societe);
+    }
+  }
+
+
 
   array = 
   [
@@ -54,7 +65,7 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    if (!this.societe.soc_raisonsociale || !this.societe.soc_Siret || !this.societe.Soc_TvaIntracommunautaire || !this.societe.Soc_AdresseEmail) {
+    if (!this.societe.soc_raisonsociale || !this.societe.soc_Siret || !this.societe.Soc_AdresseEmail) {
       console.log("Error",this.societe);
 
       Swal.fire({

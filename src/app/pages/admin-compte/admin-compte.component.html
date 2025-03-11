@@ -34,7 +34,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-user"></i></span>
-                <input type="text" id="emp_nom" class="form-control form-control-lg" placeholder="Nom" name="emp_nom" [(ngModel)]="employe.Emp_Nom" required/>
+                <input type="text" id="emp_nom" class="form-control form-control-lg" placeholder="Nom" name="emp_nom" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_Nom" required/>
               </div>
             </div>
 
@@ -42,7 +42,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-id-badge"></i></span>
-                <input type="text" id="emp_prenom" name="emp_prenom" class="form-control form-control-lg" placeholder="Prénom" [(ngModel)]="employe.Emp_Prenom" />
+                <input type="text" id="emp_prenom" name="emp_prenom" class="form-control form-control-lg" placeholder="Prénom" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_Prenom" />
               </div>
             </div>
 
@@ -50,7 +50,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
               <span class="p-4 input-group-text"><i class="fas fa-envelope"></i></span>
-              <input type="email" id="Emp_AdresseMail" name="Emp_AdresseMail" class="form-control form-control-lg" placeholder="Adresse Email" [(ngModel)]="employe.Emp_AdresseMail" />
+              <input type="email" id="Emp_AdresseMail" name="Emp_AdresseMail" class="form-control form-control-lg" placeholder="Adresse Email" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_AdresseMail" />
               </div>
             </div>
 
@@ -58,7 +58,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-phone"></i></span>
-                <input type="text" id="emp_numerotelephone" name="emp_numerotelephone" class="form-control form-control-lg" placeholder="Numéro de Téléphone" [(ngModel)]="employe.Emp_NumeroTelephone" />
+                <input type="text" id="emp_numerotelephone" name="emp_numerotelephone" class="form-control form-control-lg" placeholder="Numéro de Téléphone" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_NumeroTelephone" />
               </div>
             </div>
 
@@ -66,7 +66,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-user-tie"></i></span>
-                <select id="emp_poste" name="emp_poste" class="form-select form-select-lg" [(ngModel)]="employe.Emp_Pst_Id">
+                <select id="emp_poste" name="emp_poste" class="form-select form-select-lg" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_Pst_Id">
                   <option value="" disabled selected hidden>Choisissez votre poste</option>
                   <option *ngFor="let poste of postes" [value]="poste.pst_Id">{{ poste.pst_Designation }}</option>
                 </select>
@@ -77,7 +77,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-lock"></i></span>
-                <input type="password" id="emp_motdepasse" name="emp_motdepasse" class="form-control form-control-lg" placeholder="Mot de passe" [(ngModel)]="employe.Emp_MotDePasse" required/>
+                <input type="password" id="emp_motdepasse" name="emp_motdepasse" class="form-control form-control-lg" (blur)="setDanslocal()" placeholder="Mot de passe" [(ngModel)]="employe.Emp_MotDePasse" required/>
               </div>
             </div>
 
@@ -85,7 +85,7 @@
             <div class="form-outline mb-3">
               <div class="input-group">
                 <span class="input-group-text p-4"><i class="fas fa-lock"></i></span>
-                <input type="password" id="passwordconf" name="passwordconf" class="form-control form-control-lg" placeholder="Confirmer le mot de passe" required [(ngModel)]="passwordConf" />
+                <input type="password" id="passwordconf" name="passwordconf" class="form-control form-control-lg" (blur)="setDanslocal()" placeholder="Confirmer le mot de passe" required [(ngModel)]="passwordConf" />
               </div>
             </div>
 
@@ -103,7 +103,7 @@
                   (click)="fileInput.click()" 
                 />
                 <input type="file" #fileInput id="Emp_LogoUrl" class="form-control form-control-lg" class="hidden"
-                 name="Emp_LogoUrl" accept="image/*" [(ngModel)]="employe.Emp_LogoUrl" (change)="onFileSelected($event)" 
+                 name="Emp_LogoUrl" accept="image/*" (blur)="setDanslocal()" [(ngModel)]="employe.Emp_LogoUrl" (change)="onFileSelected($event)" 
                 />
               </div>
             </div>
