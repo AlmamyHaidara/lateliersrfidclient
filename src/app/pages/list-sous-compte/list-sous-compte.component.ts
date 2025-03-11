@@ -70,7 +70,7 @@ export class ListSousCompteComponent implements OnInit {
           this.spinner = false
           console.log('Erreur lors de la récupération des employés : ', error);
           Swal.fire({
-            title: 'Supprimer !',
+            title: 'Problème!',
             text: 'une erreur est survenue lors de la récupération des employés',
             icon: 'error',
             confirmButtonText: 'OK'

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NzCheckboxComponent } from "ng-zorro-antd/checkbox";
 import {Router, RouterLink} from "@angular/router";
@@ -30,8 +30,10 @@ import { ElementRef, AfterViewInit } from '@angular/core';
   ],
   styleUrl: './admin-compte.component.scss'
 })
-export class AdminCompteComponent {
-  employe: any = {};
+export class AdminCompteComponent implements OnInit{
+  employe: any = {
+    Emp_LogoUrl:"Default"
+  };
   passwordConf: string = '';
   postes: any[] = [];
   fileToUpload: File | null = null;
@@ -67,7 +69,15 @@ export class AdminCompteComponent {
 
   ngOnInit(): void {
     this.getPostes();
-    this.employe.Emp_LogoUrl = "Default"
+    let localSave = localStorage.getItem("employeSave"); 
+    if(localSave){
+      this.employe = JSON.parse(localSave)
+      console.log("employer trouver : ",this.employe);
+    }
+  }
+
+  setDanslocal():void{
+    localStorage.setItem('employeSave',JSON.stringify(this.employe))
   }
 
   ngAfterViewInit(): void {
@@ -159,6 +169,7 @@ export class AdminCompteComponent {
       .subscribe(
         (response: any) => {
           this.spinner = false
+          localStorage.removeItem("employeSave");
           if (response && response.message === "Employé et société enregistrés avec succès.") {
             console.log('Employé administrateur inséré avec succès !');
             console.log(this.employe);

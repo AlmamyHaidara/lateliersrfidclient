@@ -152,7 +152,8 @@ export class LoginComponent{
 
         this.router.navigate(['/dashboard']);
         // this.dashboard.ngOnInit();
-
+        localStorage.removeItem("societe");
+        localStorage.removeItem("employeSave");
         console.log(response);
 
       },

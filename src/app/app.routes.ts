@@ -58,6 +58,7 @@ import { ImpressionModelComponent } from './pages/impression-model/impression-mo
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ListCommandeComponent } from './pages/list-commande/list-commande.component';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { DevisStateComponent } from './pages/Devis/devis-state/devis-state.component';
 
 
 export const routes: Routes = [
@@ -118,6 +119,7 @@ export const routes: Routes = [
   
   { path:'loginRfidIn', component: InterneUserComponent},
   { path:'createDevis', component: CreateDevisComponent,canActivate:[authGuard]},
+  { path:'etatDevis', component: DevisStateComponent,canActivate:[authGuard]},
 
 
   { path: 'edit-commande/:id', component: EditCommandeComponent ,canActivate:[authGuard]},
